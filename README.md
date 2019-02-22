@@ -1,7 +1,6 @@
 # eslint-plugin-prettierx
 
-[![License][license-badge]][license-url]
-[![npm Version][npm-badge]][npm-url]
+[![License][license-badge]][license-url] [![npm Version][npm-badge]][npm-url]
 
 Format your code with ESLint using [Prettierx](https://github.com/brodybits/prettierx), with presets for [Prettier](https://prettier.io) and [StandardJS](https://standardjs.com/) or your custom options.
 
@@ -53,7 +52,7 @@ That is all! but you can personalize it, if you want.
 | **IMPORTANT:**                                                                                                                                                                                                                                                                                                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | The only precaution you should take is not to set rules that conflict with those of prettierx. A symptom of this is when two errors are shown at the same time or when correcting one another is shown. The provided presets override the conflicting rules of ESLint, but take care of other plugins. Generally, their "recommended" config does not establish rules for layout. |
-| If you are using a lot of plugins, it is recommended that you use [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to filter out conflicting rules ...I know it is verbose.\*                                                                                                                 |
+| If you are using a lot of plugins, it is recommended that you use [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to filter out conflicting rules ...I know it is verbose.\*                                                                                                                                                                         |
 
 \* [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize) is WIP.
 
