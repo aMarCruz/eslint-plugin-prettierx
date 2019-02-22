@@ -1,0 +1,8 @@
+.vscode
+*.bak
+*.lock
+*.log
+*.tgz
+~*
+node_modules
+package-*.json

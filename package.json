@@ -1,0 +1,57 @@
+{
+  "name": "eslint-plugin-prettierx",
+  "version": "0.1.0",
+  "description": "Format your code with ESLint using Prettierx, with presets for Prettier and StandardJS",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "prettier",
+    "prettierx",
+    "standard",
+    "standardx",
+    "formatter"
+  ],
+  "author": "aMarCruz",
+  "main": "lib/index.js",
+  "engines": {
+    "node": ">=6.24"
+  },
+  "bin": {
+    "list-eslint-config": "./bin/list-eslint-config.js"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "prettier"
+  ],
+  "bugs": "https://github.com/aMarCruz/eslint-plugin-prettierx/issues",
+  "homepage": "https://github.com/aMarCruz/eslint-plugin-prettierx",
+  "repository": {
+    "url": "https://github.com/aMarCruz/eslint-plugin-prettierx",
+    "type": "git"
+  },
+  "scripts": {
+    "test": "mocha tests --recursive"
+  },
+  "dependencies": {
+    "prettier-linter-helpers": "~1.0.0",
+    "prettierx": "~0.4.1"
+  },
+  "devDependencies": {
+    "@types/eslint": "^4.16.6",
+    "@types/node": "^11.9.4",
+    "@types/prettier": "^1.16.1",
+    "@typescript-eslint/eslint-plugin": "^1.3.0",
+    "eslint": "5.12.0",
+    "eslint-config-standardize": "^0.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "./prettier",
+    "standard": "^12.0.1",
+    "typescript": "^3.3.3"
+  },
+  "peerDependencies": {
+    "eslint": ">=5.12"
+  },
+  "license": "MIT"
+}

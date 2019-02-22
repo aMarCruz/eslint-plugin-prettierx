@@ -1,0 +1,26 @@
+{
+  "alignObjectProperties": {
+    "description": "Align colons in multiline object literals (not applied with any of the JSON parsers).",
+    "type": "boolean"
+  },
+  "spaceBeforeFunctionParen": {
+    "description": "Put a space before function parenthesis.",
+    "type": "boolean"
+  },
+  "generatorStarSpacing": {
+    "description": "Add spaces around the star (*) in generator functions (before and after - from eslint).",
+    "type": "boolean"
+  },
+  "yieldStarSpacing": {
+    "description": "Add spaces around the star (*) in yield* expressions (before and after - from eslint).",
+    "type": "boolean"
+  },
+  "indentChains": {
+    "description": "Print indents at the start of chained calls.",
+    "type": "boolean"
+  },
+  "alignTernaryLines": {
+    "description": "Align ternary lines in case of multiline ternery term (default behavior, conflict with standard)",
+    "type": "boolean"
+  }
+}

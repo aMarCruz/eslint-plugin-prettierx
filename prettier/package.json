@@ -1,0 +1,14 @@
+{
+  "name": "prettier",
+  "version": "1.16.2",
+  "description": "Prettier is an opinionated code formatter",
+  "main": "./index.js",
+  "author": "James Long",
+  "bin": {
+    "prettier": "../prettierx/bin-prettierx.js"
+  },
+  "peerDependencies": {
+    "prettierx": ">=0.4.1"
+  },
+  "license": "MIT"
+}

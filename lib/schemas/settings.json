@@ -1,0 +1,39 @@
+{
+  "usePrettierrc": {
+    "description": "Set to `true` to look for a configuration file, if `false` the plugin or default settings will be used.",
+    "default": false,
+    "type": "boolean"
+  },
+  "editorconfig": {
+    "description": "If set to `true` and an `.editorconfig` file is in your project, Prettier will parse it and convert its properties to the corresponding prettier configuration. This configuration will be overridden by `.prettierrc`",
+    "default": true,
+    "type": "boolean"
+  },
+  "ignorePath": {
+    "description": "Path to a file containing patterns that describe files to ignore.",
+    "default": ".prettierignore",
+    "type": "string"
+  },
+  "pluginSearchDirs": {
+    "description": "Custom directory that contains prettier plugins in node_modules subdirectory.\nOverrides default behavior when plugins are searched relatively to the location of Prettier.\nMultiple values are accepted.",
+    "default": [],
+    "type": "array",
+    "items": { "type": "string" }
+  },
+  "plugins": {
+    "description": "Array of plugins names to use.",
+    "default": [],
+    "type": "array",
+    "items": { "type": "string" }
+  },
+  "withNodeModules": {
+    "description": "Prettier CLI will ignore files located in `node_modules` directory. To change the default behavior use this flag.",
+    "default": false,
+    "type": "boolean"
+  },
+  "useCache": {
+    "description": "Set to `false` for fine-tune the settings, leave the default for normal use.",
+    "default": true,
+    "type": "boolean"
+  }
+}
