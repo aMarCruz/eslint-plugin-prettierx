@@ -25,7 +25,7 @@ yarn add eslint eslint-plugin-prettierx -D
 Install [@typescript-eslint/plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin), if you are using TypeScript (the parser is included with it):
 
 ```bash
-yarn add @typescript-eslint/plugin -D
+yarn add @typescript-eslint/eslint-plugin -D
 ```
 
 **Note:** I'm using ESLint 5.12 and 5.13, other versions must work, but I'm not fully sure.
@@ -44,7 +44,7 @@ This is an example in json for projects using TypeScript and the "standardize" p
   },
 
   "plugins": ["@typescript-eslint", "prettierx"],
-  "extends": ["plugin:prettierx/standardize"]
+  "extends": ["eslint:recommended", "plugin:prettierx/standardize"]
 }
 ```
 
@@ -304,6 +304,6 @@ The [MIT](LICENSE) License, &copy; 2019, Alberto Martínez
 Parts of this plugin were taken from tools from [Prettier](https://github.com/prettier/prettier) under the MIT license.
 
 [license-badge]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
-[license-url]: https://github.com/aMarCruz/eslint-plugin-standardize/blob/master/LICENSE
-[npm-badge]: https://img.shields.io/npm/v/eslint-plugin-standardize.svg
-[npm-url]: https://www.npmjs.com/package/eslint-plugin-standardize
+[license-url]: https://github.com/aMarCruz/eslint-plugin-prettierx/blob/master/LICENSE
+[npm-badge]: https://img.shields.io/npm/v/eslint-plugin-prettierx.svg
+[npm-url]: https://www.npmjs.com/package/eslint-plugin-prettierx

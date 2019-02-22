@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-prettierx",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Format your code with ESLint using Prettierx, with presets for Prettier and StandardJS",
   "keywords": [
     "eslint",
