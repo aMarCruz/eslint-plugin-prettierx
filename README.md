@@ -1,6 +1,7 @@
 # eslint-plugin-prettierx
 
 [![License][license-badge]][license-url]
+[![npm Version][npm-badge]][npm-url]
 
 Format your code with ESLint using [Prettierx](https://github.com/brodybits/prettierx), with presets for [Prettier](https://prettier.io) and [StandardJS](https://standardjs.com/) or your custom options.
 
