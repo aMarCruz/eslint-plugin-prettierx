@@ -1,10 +1,10 @@
 # Changelog of eslint-plugin-prettierx
 
-## \[0.1.3] - Unreleased
+## \[0.1.3] - 2019-02-23
 
 ### Added
 
-- 'no-useless-escape' to the conflicting rules, try with '\ca'.
+- 'no-useless-escape' to the conflicting rules, test with '\ca'.
 
 ### Fixed
 
