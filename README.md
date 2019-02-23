@@ -61,22 +61,16 @@ That is all! but you can personalize it, if you want.
 Because the way that Prettierx works, this plugin has one only rule: `prettierx/options`, that contains all the plugin options.
 
 ```js
-  'prettierx/options': [severity, preset, options]
+  'prettierx/options': [severity, options]
 ```
 
 - **`severity`**
 
   Common severity option for ESLint rules: `0`, `1`, `2`, "off", "warn", "error". The last turns prettierx off.
 
-- **`preset`**
-
-  One of the provided [presets](#presets): "default" (default), "standardx", "standardize".
-
-  This is required if `options` is used.
-
 - **`options`**
 
-  Use the options object to override the preset [options](#options).
+  Allows override the [options](#options) defined by the [preset](#presets).
 
 The precedence of the plugin configuration:
 
