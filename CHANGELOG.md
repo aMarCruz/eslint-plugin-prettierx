@@ -2,6 +2,10 @@
 
 ## \[0.1.3] - Unreleased
 
+### Added
+
+- 'no-useless-escape' to the conflicting rules, try with '\ca'.
+
 ### Fixed
 
 - Refence to unexistent 'preset' option in the prettierx rule.
