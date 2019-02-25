@@ -7,11 +7,7 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 - Based on ESLint or external configuration.
 - Presets\* for default options.
 
-\* I'm using "preset" instead "config" because these set default prettierx options, in addition to ESLint rules.
-
-| NOTE                                                      |
-| --------------------------------------------------------- |
-| This doc is very **WIP**, I have few time this days to it |
+For ESLint 5.12 or above.
 
 ## Setup
 
@@ -21,40 +17,140 @@ Install [ESLint](http://eslint.org) v5.x and the Prettierx plugin with npm or ya
 yarn add eslint eslint-plugin-prettierx -D
 ```
 
-Install [@typescript-eslint/plugin](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin), if you are using TypeScript (the parser is included with it):
+Install other plugins that you need.
+
+Now configure ESLint to make it work without conflicts between its internal rules, those of other plugins, and the prettier settings.
+
+1. Add `prettierx` to the "plugins" section of your configuration file (.eslintrc.js, .json, yaml, etc). You can omit the "eslint-plugin-" prefix.
+
+2. Then, in "extends", put the configs of other plugins that you are using. Almost all plugins include configs to enable several of its rules.
+
+3. Bellow these configs, put "plugin:prettier/&lt;preset&gt;", where `<preset>` is the name of the preset (style) that you will use.
+
+4. Then, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
+
+This is an example for projects using TypeScript with the @typescript-eslint-parser, the "@typescript-eslint" plugin, the "react" plugin, and "prettierx" with the "standard" preset (the @typescript-eslint/eslint-plugin includes the parser):
 
 ```bash
-yarn add @typescript-eslint/eslint-plugin -D
+yarn add eslint eslint-plugin-prettierx eslint-plugin-react @typescript-eslint/eslint-plugin -D
 ```
 
-**Note:** I'm using ESLint 5.12 and 5.13, other versions must work, but I'm not fully sure.
-
-Add `prettierx` to the "plugins" section of your configuration file (.eslintrc.js, .json, yaml, etc). You can omit the "eslint-plugin-" prefix.
-
-This is an example in json for projects using TypeScript and the "standardize" preset:
-
-```json
+```js
 {
-  "root": true,
-  "parser": "@typescript-eslint/parser",
-  "env": {
-    "es6": true,
-    "node": true
+  // this is optional, avoid searching eslint configs upward.
+  root: true,
+  parser: '@typescript-eslint/parser',
+  env: {
+    browser: true,
+    es6: true
   },
+  parserOptions: {
+    ecmaVersion: 2018,
+    warnOnUnsupportedTypeScriptVersion: false,
+  }
 
-  "plugins": ["@typescript-eslint", "prettierx"],
-  "extends": ["eslint:recommended", "plugin:prettierx/standardize"]
+  plugins: [
+    '@typescript-eslint',
+    'react',
+    // 1. Add the prettierx plugin
+    'prettierx'
+  ],
+  extends: [
+    // optional, the eslint recommended config
+    'eslint:recommended',
+    // 2. configs to enable rules of the plugins
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    // 3. prettierx settings with the "standard" style
+    'plugin:prettierx/standardx',
+    // ...and the exclusions for the additional plugins
+    // you don't need exclusion for eslint:recommended
+    'plugin:prettierx/@typescript-eslint',
+    'plugin:prettierx/react',
+  ],
+  rules: {
+    // here, you can override any rule set in the "extends"
+  },
 }
 ```
 
 That is all! but you can personalize it, if you want.
 
-| **IMPORTANT:**                                                                                                                                                                                                                                                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| The only precaution you should take is not to set rules that conflict with those of prettierx. A symptom of this is when two errors are shown at the same time or when correcting one another is shown. The provided presets override the conflicting rules of ESLint, but take care of other plugins. Generally, their "recommended" config does not establish rules for layout. |
-| If you are using a lot of plugins, it is recommended that you use [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) to filter out conflicting rules ...I know it is verbose.\*                                                                                                                                                                         |
+### Important
 
-\* [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize) is WIP.
+The provided presets only configure the style used by prettierx and disable conflicting ESLint rules. They do _**not enable**_ rules. You must use the plugin configs that, and the configs (exclusions) provided by prettierx for each plugin.
+
+See the [exclusions](#exlusions) provided in this doc.
+
+## Presets
+
+The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the initial PrettierX options and disable several ESLint rules that may cause conflicts. Three are provided:
+
+- **default**
+
+  These are the predefined prettierx options and it is the best choice if you are migrating from prettier or prettier-eslint.
+
+- **standardx**
+
+  This is the StandardJS style. You can use it with the [standard](https://github.com/standard/eslint-config-standard) config from StandardJS, but it is not recommended because you will need to setup all manually (In a future version, I will provide an customized preset for the StandardJS bundle).
+
+- **standardize**
+
+  This is my personal preset, a modified version of StandardJS with trailing commas (es5) and double quotes for JSX properties that I use with my [standardize](https://www.npmjs.com/package/eslint-config-standardize) config (but it can be used with your own config).
+
+These are the prettierx [options](#options) used for each preset:
+
+| &nbsp;                     | default    | standardx  | standardize |
+| -------------------------- | ---------- | ---------- | ----------- |
+| `alignObjectProperties`    | false      | false      | false       |
+| `alignTernaryLines`        | true       | false      | false       |
+| `arrowParens`              | "avoid     | "avoid     | "avoid"     |
+| `bracketSpacing`           | true       | true       | true        |
+| `endOfLine`                | "auto"     | "lf"       | "lf"        |
+| `generatorStarSpacing`     | false      | true       | true        |
+| `indentChains`             | true       | true       | true        |
+| `insertPragma`             | false      | false      | false       |
+| `jsxBracketSameLine`       | false      | false      | false       |
+| `jsxSingleQuote`           | false      | true       | false       |
+| `parser`                   | "babel     | "babel     | "babel"     |
+| `printWidth`               | 80         | 80         | 92          |
+| `requirePragma`            | false      | false      | false       |
+| `semi`                     | true       | false      | false       |
+| `singleQuote`              | false      | true       | true        |
+| `spaceBeforeFunctionParen` | false      | true       | true        |
+| `tabWidth`                 | 2          | 2          | 2           |
+| `trailingComma`            | "none"     | "none"     | "es5"       |
+| `useTabs`                  | false      | false      | false       |
+| `yieldStarSpacing`         | false      | true       | true        |
+
+If you want to configure prettierx by means of a file .prettierrc or .editorconfig, add `usePrettierrc: true` in the "[settings.prettierx](#settings)" section of the eslintrc if you are using the "standardx" or "standardize" presets, "default" set it to `true`.
+
+In any case, you can use the "prettierx/options" rule, that has precedence over other options.
+
+### Specials Presets
+
+For bundles (you don't need any other preset):
+
+- plugin:prettier/standardize-bundle [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize)
+
+#### Usage
+
+```bash
+yarn add eslint eslint-plugin-prettierx eslint-config-standardize
+```
+
+```json
+{
+  "plugins": [
+    "prettier",
+    "standardize"
+  ],
+  "extends": [
+    "standardize",
+    "plugin:prettierx/standardize-bundle"
+  ]
+}
+```
 
 ## Rules
 
@@ -72,12 +168,16 @@ Because the way that Prettierx works, this plugin has one only rule: `prettierx/
 
   Allows override the [options](#options) defined by the [preset](#presets).
 
+The values of a preset are used as defaults for missing options when you override the options.
+
 The precedence of the plugin configuration:
 
 - `prettierx/options` from your ESLint config.
 - .prettierrc, if configured in the [settings](#settings).
 - .editorconfig, if configured and `usePrettierrc` is used.
 - Preset options.
+
+Also, if you want to change the behavior of the plugin for certain directories, use the "overrides" property of the ESLint config.
 
 ### Settings
 
@@ -140,62 +240,28 @@ This is an example in json using the default values:
 
   Use `false` only for test the settings, leave the default for normal use.
 
-## Presets
-
-The presets allow you to set the initial values for the options.
-
-It is recommended that you establish one, as each preset is responsible for overriding the conflicting ESLint rules (please see the FAQ).
-
-If you want to configure prettierx by means of a file .prettierrc or .editorconfig, use the "default" preset or any other with the setting `usePrettierrc: true`.
-
-In any case, you can use the "prettierx/options" rule, that has precedence over other options.
-
-Three presets are provided:
-
-- **default**
-
-  These are the predefined prettierx options and it is the best choice if you are migrating from prettier or prettier-eslint.
-
-- **standardx**
-
-  Este es el estilo StandardJS, pero personalizable, como lo hace [standardx](https://github.com/standard/standardx).
-
-  _This preset set `settings.prettierx.usePrettierrc` = `false`_
-
-- **standardize**
-
-  This is my favorite, a modified version of StandardJS with trailing commas (es5) and double quotes for JSX properties.
-
-  _This preset set `settings.prettierx.usePrettierrc` = `false`_
-
-The value options of the preset are used as defaults for missing rules when you override one or more options.
-
-Although you can omit the presets and obtain the same values as the "default", it is not recommended because they disable some ESLint rules that can cause conflicts.
-
-If you want to change the behavior of the plugin for certain directories, use the "overrides" property of the ESLint config.
-
 ## Supported Options
 
 All allowed, but not all makes sense.
 
 ### Prettier Options
 
-| Property             | Type    | Default    | Notes                                                                                                        |
-| -------------------- | ------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| `printWidth`         | integer | 80         | Specify the line length that the printer will wrap on.                                                       |
-| `tabWidth`           | integer | 2          | Specify the number of spaces per indentation-level.                                                          |
-| `useTabs`            | boolean | false      | Indent lines with tabs instead of spaces.                                                                    |
-| `semi`               | boolean | true       | Print semicolons at the ends of statements.                                                                  |
-| `singleQuote`        | boolean | false      | Use single quotes instead of double quotes.                                                                  |
-| `jsxSingleQuote`     | boolean | false      | Use single quotes instead of double quotes in JSX.                                                           |
-| `trailingComma`      | enum    | "none"     | (none, es5, all) Print trailing commas wherever possible when multi-line.                                    |
-| `bracketSpacing`     | boolean | true       | Print spaces between brackets in object literals.                                                            |
-| `jsxBracketSameLine` | boolean | false      | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line. |
-| `arrowParens`        | enum    | "avoid"    | (avoid, always) Include parentheses around a sole arrow function parameter.                                  |
-| `parser`             | string  | "babel"    | Specify which parser to use. Yo can also pass an already `require`d parser.                                  |
-| `requirePragma`      | boolean | false      | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                     |
-| `insertPragma`       | boolean | false      | Insert a special `@format` marker at the top of files that have been formatted.                              |
-| `proseWrap`          | enum    | "preserve" | (always, never, preserve) For markdown, use "never" if you want to rely on editor/viewer soft wrapping.      |
+| Property             | Type    | Default    | Notes                                                                                                            |
+| -------------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| `printWidth`         | integer | 80         | Specify the line length that the printer will wrap on.                                                           |
+| `tabWidth`           | integer | 2          | Specify the number of spaces per indentation-level.                                                              |
+| `useTabs`            | boolean | false      | Indent lines with tabs instead of spaces.                                                                        |
+| `semi`               | boolean | true       | Print semicolons at the ends of statements.                                                                      |
+| `singleQuote`        | boolean | false      | Use single quotes instead of double quotes.                                                                      |
+| `jsxSingleQuote`     | boolean | false      | Use single quotes instead of double quotes in JSX.                                                               |
+| `trailingComma`      | enum    | "none"     | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
+| `bracketSpacing`     | boolean | true       | Print spaces between brackets in object literals.                                                                |
+| `jsxBracketSameLine` | boolean | false      | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
+| `arrowParens`        | enum    | "avoid"    | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
+| `parser`             | string  | "babel"    | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
+| `requirePragma`      | boolean | false      | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
+| `insertPragma`       | boolean | false      | Insert a special `@format` marker at the top of files that have been formatted.                                  |
+| `endOfLine`          | enum    | "auto"     | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
 
 ### Prettierx Extensions
 
@@ -208,6 +274,20 @@ All allowed, but not all makes sense.
 | `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
 | `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
 
+## Exclusions
+
+eslint-plugin-prettierx provide exclusion rules for a few plugins:
+
+- plugin:prettier/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
+- plugin:prettier/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
+- plugin:prettier/flowtype for [eslint-plugin-flowtype](https://www.npmjs.com/package/eslint-plugin-flowtype)
+- plugin:prettier/react [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
+- plugin:prettier/standard [eslint-plugin-standard](https://www.npmjs.com/package/eslint-plugin-standard) (only the plugin)
+- plugin:prettier/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
+- plugin:prettier/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
+
+\* eslint-plugin-node and eslint-plugin-promise does not need exclusions.
+
 ## VS Code ESLint
 
 Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixanle Problems" (it is not a formatter ...yet).
@@ -216,7 +296,7 @@ Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixanle
 
   Open `File > Preferences > Keyboard Shortcuts` and assign a key to "ESLint: Fix all auto-fixable Problems" (`eslint.executeAutofix`).
 
-- If you want auto-fix when saving, in the VS Code settings set "eslint.autoFixOnSave" to `true`.
+- If you want auto-fix when saving, add `"eslint.autoFixOnSave": true` to the VS Code settings.
 
 ### Fix TypeScript
 
@@ -285,7 +365,7 @@ Do not use trailing comments for directives, put them to its own line.
 
 ## TODO
 
-- [ ] Better integration with eslint-config-standardize
+- [ ] Config for the StandardJS bundle
 - [ ] Test
 - [ ] Enhance this doc
 - [ ] Many other things
