@@ -13,6 +13,10 @@
 - Allows the ESLint rule `no-useless-escape`.
 - Update Readme.
 
+### Fixed
+
+- Presets not setting its options.
+
 ### Removed
 
 - devDependency on standard.
