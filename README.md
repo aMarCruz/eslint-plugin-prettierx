@@ -92,7 +92,9 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 - **standardx**
 
-  This is the StandardJS style. You can use it with the [standard](https://github.com/standard/eslint-config-standard) config from StandardJS, but it is not recommended because you will need to setup all manually (In a future version, I will provide an customized preset for the StandardJS bundle).
+  This is the StandardJS style. You can use it with the [standard](https://github.com/standard/eslint-config-standard) config from StandardJS, but it is not recommended because you will need to setup all manually.
+
+  Note: In a future version, I will provide an customized preset for the StandardJS bundle, much like the [standardize-bundle](#bundle-presets).
 
 - **standardize**
 
@@ -127,11 +129,11 @@ If you want to configure prettierx by means of a file .prettierrc or .editorconf
 
 In any case, you can use the "prettierx/options" rule, that has precedence over other options.
 
-### Specials Presets
+### Bundle Presets
 
-For bundles (you don't need any other preset):
+For the "standardize" bundle you don't need worry about missing plugins or configs:
 
-- plugin:prettier/standardize-bundle [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize)
+- 'plugin:prettier/standardize-bundle' for [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize).
 
 #### Usage
 
@@ -143,10 +145,8 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize
 {
   "plugins": [
     "prettier",
-    "standardize"
   ],
   "extends": [
-    "standardize",
     "plugin:prettierx/standardize-bundle"
   ]
 }

@@ -6,6 +6,7 @@
 
 - Prettier exclusions for '@typescript-eslint', 'babel', 'flowtype', 'react', 'standard', 'unicorn', 'vue'.
 - Add the standardize-bundle preset.
+- `parserOptions` block to the presets and the bundle preset.
 
 ### Changed
 
