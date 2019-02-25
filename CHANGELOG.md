@@ -2,9 +2,14 @@
 
 ## \[0.2.0] - 2019-02-25
 
+### Added
+
+- Prettier exclusions for '@typescript-eslint', 'babel', 'flowtype', 'react', 'standard', 'typescript', 'unicorn', 'vue'.
+
 ### Changed
 
 - Runs prettierx last in the parsing, to allow ESLint fixes take precedence.
+- Allows the ESLint rule `no-useless-escape`.
 
 ## \[0.1.3] - 2019-02-23
 

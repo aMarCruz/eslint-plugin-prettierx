@@ -35,6 +35,7 @@
     "test": "mocha tests --recursive"
   },
   "dependencies": {
+    "eslint-config-prettier": "^4.0.0",
     "prettier-linter-helpers": "~1.0.0",
     "prettierx": "~0.4.1"
   },
@@ -47,7 +48,6 @@
     "eslint-config-standardize": "^0.2.0",
     "mocha": "^5.2.0",
     "prettier": "./prettier",
-    "standard": "^12.0.1",
     "typescript": "^3.3.3"
   },
   "peerDependencies": {
