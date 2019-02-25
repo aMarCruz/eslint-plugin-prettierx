@@ -29,23 +29,26 @@ Now configure ESLint to make it work without conflicts between its internal rule
 
 4. Then, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
 
-This is an example for projects using TypeScript with the @typescript-eslint-parser, the "@typescript-eslint" plugin, the "react" plugin, and "prettierx" with the "standard" preset (the @typescript-eslint/eslint-plugin includes the parser):
+This is an example for projects using TypeScript with the @typescript-eslint-parser, the "@typescript-eslint" plugin, the "react" plugin, and "prettierx" with the "standardx" preset (the @typescript-eslint/eslint-plugin includes the parser):
 
 ```bash
 yarn add eslint eslint-plugin-prettierx eslint-plugin-react @typescript-eslint/eslint-plugin -D
 ```
 
+Configure eslint
+
 ```js
 {
-  // this is optional, avoid searching eslint configs upward.
+  // "root" is optional, avoids searching eslintrc upwards.
   root: true,
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
     es6: true
   },
+  // the prettierx plugin already sets ecmaVersion 2018,
+  // sourceType "module" and enables ecmaFeatures.jsx
   parserOptions: {
-    ecmaVersion: 2018,
     warnOnUnsupportedTypeScriptVersion: false,
   }
 
