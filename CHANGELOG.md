@@ -1,12 +1,13 @@
 # Changelog of eslint-plugin-prettierx
 
-## \[0.2.0] - 2019-02-25
+## \[0.2.1] - 2019-02-25
 
 ### Added
 
 - Prettier exclusions for '@typescript-eslint', 'babel', 'flowtype', 'react', 'standard', 'unicorn', 'vue'.
 - Add the standardize-bundle preset.
 - `parserOptions` block to the presets and the bundle preset.
+- Exclusion for the unicorn config: `unicorn/escape-case`
 
 ### Changed
 
