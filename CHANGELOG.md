@@ -1,5 +1,11 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.2.2] - 2019-02-26
+
+### Changed
+
+- When running from the CLI, clear cache only at the first run.
+
 ## \[0.2.1] - 2019-02-25
 
 ### Added
