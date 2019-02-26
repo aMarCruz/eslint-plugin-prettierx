@@ -1,11 +1,11 @@
 # Changelog of eslint-plugin-prettierx
 
-## \[0.2.2] - 2019-02-26
+## \[0.3.0] - 2019-02-26
 
 ### Changed
 
 - When running from the CLI, clear cache only at the first run.
-- Remove 'standardize' from "extends" in the preset 'standardize-bundle', to allow other configs override its rules before the exclusions.
+- Breaking: Remove 'standardize' from "extends" in the preset 'standardize-bundle', to allow other configs override its rules before the exclusions.
 
 ## \[0.2.1] - 2019-02-25
 

@@ -9,6 +9,8 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 
 For ESLint 5.12 or above.
 
+Please see a breaking change in [bundle presets](#bundle-presets)
+
 ## Setup
 
 Install [ESLint](http://eslint.org) v5.x and the Prettierx plugin with npm or yarn:
@@ -27,9 +29,9 @@ Now configure ESLint to make it work without conflicts between its internal rule
 
 3. Bellow these configs, put "plugin:prettier/&lt;preset&gt;", where `<preset>` is the name of the preset (style) that you will use.
 
-4. Then, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
+4. Last, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
 
-This is an example for projects using TypeScript with the @typescript-eslint-parser, the "@typescript-eslint" plugin, the "react" plugin, and "prettierx" with the "standardx" preset (the @typescript-eslint/eslint-plugin includes the parser):
+This is an example for projects using TypeScript with the @typescript-eslint-parser, the "@typescript-eslint" plugin, the "react" plugin, and "prettierx" with the "standardx" preset (the @typescript-eslint/eslint-plugin already includes the typescript parser):
 
 ```bash
 yarn add eslint eslint-plugin-prettierx eslint-plugin-react @typescript-eslint/eslint-plugin -D
@@ -61,12 +63,12 @@ Configure eslint
   extends: [
     // optional, the eslint recommended config
     'eslint:recommended',
-    // 2. configs to enable rules of the plugins
+    // 2. configs to enable plugin rules
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     // 3. prettierx settings with the "standard" style
     'plugin:prettierx/standardx',
-    // ...and the exclusions for the additional plugins
+    // 4. add the exclusions for the additional plugins
     // you don't need exclusion for eslint:recommended
     'plugin:prettierx/@typescript-eslint',
     'plugin:prettierx/react',
@@ -79,15 +81,15 @@ Configure eslint
 
 That is all! but you can personalize it, if you want.
 
+See the provided [exclusions](#exlusions) later in this doc.
+
 ### Important
 
-The provided presets only configure the style used by prettierx and disable conflicting ESLint rules. They do _**not enable**_ rules. You must use the plugin configs that, and the configs (exclusions) provided by prettierx for each plugin.
-
-See the [exclusions](#exlusions) provided in this doc.
+The provided presets only configure the style used by prettierx and disable conflicting ESLint rules. They do _**not enable**_ rules. You must use the plugin configs for that, along with the configs (exclusions) provided by prettierx for each plugin.
 
 ## Presets
 
-The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the initial PrettierX options and disable several ESLint rules that may cause conflicts. Three are provided:
+The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the initial PrettierX options and disable several ESLint rules that can cause conflicts. Three are provided:
 
 - **default**
 
@@ -138,10 +140,14 @@ For the "standardize" bundle you don't need worry about missing plugins or confi
 
 - 'plugin:prettier/standardize-bundle' for [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize).
 
+| WARNING |
+| --- |
+| From v0.3.0 you must set the 'standardize' config in "extends" manually |
+
 #### Usage
 
 ```bash
-yarn add eslint eslint-plugin-prettierx eslint-config-standardize
+yarn add eslint eslint-plugin-prettierx eslint-config-standardize -D
 ```
 
 ```json
@@ -150,10 +156,46 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize
     "prettier",
   ],
   "extends": [
+    "standardize"
     "plugin:prettierx/standardize-bundle"
   ]
 }
 ```
+
+##### Usage with TypeScript
+
+```bash
+yarn add eslint eslint-plugin-prettierx eslint-config-standardize @typescript-eslint/eslint-plugin -D
+```
+
+```json
+{
+  "plugins": [
+    "@typescript-eslint"
+    "prettier",
+  ],
+  "extends": [
+    "standardize"
+    "standardize/typescript",
+    "plugin:prettierx/standardize-bundle"
+    "plugin:prettierx/@typescript-eslint"
+  ]
+}
+```
+
+## Exclusions
+
+eslint-plugin-prettierx provide exclusion rules for a few plugins:
+
+- plugin:prettier/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
+- plugin:prettier/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
+- plugin:prettier/flowtype for [eslint-plugin-flowtype](https://www.npmjs.com/package/eslint-plugin-flowtype)
+- plugin:prettier/react [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
+- plugin:prettier/standard [eslint-plugin-standard](https://www.npmjs.com/package/eslint-plugin-standard) (only the plugin)
+- plugin:prettier/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
+- plugin:prettier/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
+
+\* Plugins that do not affect the formato ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), stc), does not need exclusions.
 
 ## Rules
 
@@ -276,20 +318,6 @@ All allowed, but not all makes sense.
 | `yieldStarSpacing`         | boolean | false   | Add spaces around the star (\*) in `yield` expressions.                                                                    |
 | `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
 | `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
-
-## Exclusions
-
-eslint-plugin-prettierx provide exclusion rules for a few plugins:
-
-- plugin:prettier/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
-- plugin:prettier/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
-- plugin:prettier/flowtype for [eslint-plugin-flowtype](https://www.npmjs.com/package/eslint-plugin-flowtype)
-- plugin:prettier/react [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
-- plugin:prettier/standard [eslint-plugin-standard](https://www.npmjs.com/package/eslint-plugin-standard) (only the plugin)
-- plugin:prettier/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
-- plugin:prettier/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
-
-\* eslint-plugin-node and eslint-plugin-promise does not need exclusions.
 
 ## VS Code ESLint
 
