@@ -319,7 +319,7 @@ All allowed, but not all makes sense.
 
 ## VS Code ESLint
 
-Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixanle Problems" (it is not a formatter ...yet).
+Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixable Problems" (it is not a formatter ...yet).
 
 - Assign a hotkey
 
@@ -327,9 +327,9 @@ Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixanle
 
 - If you want auto-fix when saving, add `"eslint.autoFixOnSave": true` to the VS Code settings.
 
-### Fix TypeScript
+### Formating TypeScript
 
-ESLint does not fix TypeScript files by default. To enable this feature, you need the following config in the VS Code settings:
+ESLint does not fix TypeScript files by default. To enable this feature, you need add the "autoFix" flag to the TS types in your VS Code settings:
 
 ```json
 {
@@ -342,7 +342,7 @@ ESLint does not fix TypeScript files by default. To enable this feature, you nee
 }
 ```
 
-### Fix Fenced Blocks
+### Formating Fenced Blocks
 
 To fix JS or TS blocks in markdown or HTML, try [eslint-plugin-markdown](https://www.npmjs.com/package/eslint-plugin-markdown) and [eslint-plugin-html](https://www.npmjs.com/package/eslint-plugin-html).
 
