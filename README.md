@@ -66,22 +66,20 @@ Configure eslint
     // 2. configs to enable plugin rules
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    // 3. prettierx settings with the "standard" style
+    // 3. prettierx settings with the "standardx" style
     'plugin:prettierx/standardx',
-    // 4. add the exclusions for the additional plugins
-    // you don't need exclusion for eslint:recommended
+    // 4. add exclusions for additional plugins
     'plugin:prettierx/@typescript-eslint',
     'plugin:prettierx/react',
   ],
-  rules: {
-    // here, you can override any rule set in the "extends"
-  },
 }
 ```
 
 That is all! but you can personalize it, if you want.
 
 See the provided [exclusions](#exlusions) later in this doc.
+
+You don't need exclusions for 'eslint:recommended' nor for plugins that now affect the layout.
 
 ### Important
 
@@ -107,41 +105,39 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 These are the prettierx [options](#options) used for each preset:
 
-| &nbsp;                     | default    | standardx  | standardize |
-| -------------------------- | ---------- | ---------- | ----------- |
-| `alignObjectProperties`    | false      | false      | false       |
-| `alignTernaryLines`        | true       | false      | false       |
-| `arrowParens`              | "avoid     | "avoid     | "avoid"     |
-| `bracketSpacing`           | true       | true       | true        |
-| `endOfLine`                | "auto"     | "lf"       | "lf"        |
-| `generatorStarSpacing`     | false      | true       | true        |
-| `indentChains`             | true       | true       | true        |
-| `insertPragma`             | false      | false      | false       |
-| `jsxBracketSameLine`       | false      | false      | false       |
-| `jsxSingleQuote`           | false      | true       | false       |
-| `parser`                   | "babel     | "babel     | "babel"     |
-| `printWidth`               | 80         | 80         | 92          |
-| `requirePragma`            | false      | false      | false       |
-| `semi`                     | true       | false      | false       |
-| `singleQuote`              | false      | true       | true        |
-| `spaceBeforeFunctionParen` | false      | true       | true        |
-| `tabWidth`                 | 2          | 2          | 2           |
-| `trailingComma`            | "none"     | "none"     | "es5"       |
-| `useTabs`                  | false      | false      | false       |
-| `yieldStarSpacing`         | false      | true       | true        |
+| &nbsp;                     | default | standardx | standardize |
+| -------------------------- | ------- | --------- | ----------- |
+| `alignObjectProperties`    | false   | false     | false       |
+| `alignTernaryLines`        | true    | false     | false       |
+| `arrowParens`              | "avoid  | "avoid    | "avoid"     |
+| `bracketSpacing`           | true    | true      | true        |
+| `endOfLine`                | "auto"  | "lf"      | "lf"        |
+| `generatorStarSpacing`     | false   | true      | true        |
+| `indentChains`             | true    | true      | true        |
+| `insertPragma`             | false   | false     | false       |
+| `jsxBracketSameLine`       | false   | false     | false       |
+| `jsxSingleQuote`           | false   | true      | false       |
+| `parser`                   | "babel  | "babel    | "babel"     |
+| `printWidth`               | 80      | 80        | 92          |
+| `requirePragma`            | false   | false     | false       |
+| `semi`                     | true    | false     | false       |
+| `singleQuote`              | false   | true      | true        |
+| `spaceBeforeFunctionParen` | false   | true      | true        |
+| `tabWidth`                 | 2       | 2         | 2           |
+| `trailingComma`            | "none"  | "none"    | "es5"       |
+| `useTabs`                  | false   | false     | false       |
+| `yieldStarSpacing`         | false   | true      | true        |
 
-If you want to configure prettierx by means of a file .prettierrc or .editorconfig, add `usePrettierrc: true` in the "[settings.prettierx](#settings)" section of the eslintrc if you are using the "standardx" or "standardize" presets, "default" set it to `true`.
+If you want to configure prettierx by means of a file .prettierrc or .editorconfig, add `usePrettierrc: true` in the "[settings.prettierx](#settings)" section of the .eslintrc if you are using the "standardx" or "standardize" presets. The preset "default" already set this to `true`.
 
 In any case, you can use the "prettierx/options" rule, that has precedence over other options.
 
 ### Bundle Presets
 
-For the "standardize" bundle you don't need worry about missing plugins or configs:
+For the "[standardized](https://www.npmjs.com/package/eslint-config-standardize)" bundle, prettierx provides the special config 'plugin:prettier/standardize-bundle', so you do not need to worry about the details.
 
-- 'plugin:prettier/standardize-bundle' for [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize).
-
-| WARNING |
-| --- |
+| WARNING                                                                 |
+| ----------------------------------------------------------------------- |
 | From v0.3.0 you must set the 'standardize' config in "extends" manually |
 
 #### Usage
@@ -195,7 +191,7 @@ eslint-plugin-prettierx provide exclusion rules for a few plugins:
 - plugin:prettier/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
 - plugin:prettier/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
 
-\* Plugins that do not affect the formato ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), stc), does not need exclusions.
+\* Plugins that do not affect the format ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), stc), does not need exclusions.
 
 ## Rules
 
@@ -226,9 +222,9 @@ Also, if you want to change the behavior of the plugin for certain directories, 
 
 ### Settings
 
-To fine-tune, you can use the `settings` block of your ESLint file.
+To fine-tune the prettierx operation, you can use the `settings` block of your eslintrc file.
 
-This is an example in json using the default values:
+This example shows the default values for the "default" preset:
 
 ```json
 {
@@ -244,11 +240,13 @@ This is an example in json using the default values:
 }
 ```
 
+These are the same for the "standardx" and "standardize" presets, except `usePrettierrc`, which is set to `false`.
+
 - **`usePrettierrc`**
 
-  Type: `boolean`, default: `false`
+  Type: `boolean`, default: `false` for "default", `true` for other presets.
 
-  Set to `true` to look for a configuration file, if `false` the plugin or default settings will be used.
+  Set to `true` to look for a [configuration file](https://prettier.io/docs/en/configuration.html), if `false` the plugin or default settings will be used.
 
 - **`editorconfig`**
 
@@ -291,22 +289,22 @@ All allowed, but not all makes sense.
 
 ### Prettier Options
 
-| Property             | Type    | Default    | Notes                                                                                                            |
-| -------------------- | ------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
-| `printWidth`         | integer | 80         | Specify the line length that the printer will wrap on.                                                           |
-| `tabWidth`           | integer | 2          | Specify the number of spaces per indentation-level.                                                              |
-| `useTabs`            | boolean | false      | Indent lines with tabs instead of spaces.                                                                        |
-| `semi`               | boolean | true       | Print semicolons at the ends of statements.                                                                      |
-| `singleQuote`        | boolean | false      | Use single quotes instead of double quotes.                                                                      |
-| `jsxSingleQuote`     | boolean | false      | Use single quotes instead of double quotes in JSX.                                                               |
-| `trailingComma`      | enum    | "none"     | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
-| `bracketSpacing`     | boolean | true       | Print spaces between brackets in object literals.                                                                |
-| `jsxBracketSameLine` | boolean | false      | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
-| `arrowParens`        | enum    | "avoid"    | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
-| `parser`             | string  | "babel"    | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
-| `requirePragma`      | boolean | false      | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
-| `insertPragma`       | boolean | false      | Insert a special `@format` marker at the top of files that have been formatted.                                  |
-| `endOfLine`          | enum    | "auto"     | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
+| Property             | Type    | Default | Notes                                                                                                            |
+| -------------------- | ------- | ------- | ---------------------------------------------------------------------------------------------------------------- |
+| `printWidth`         | integer | 80      | Specify the line length that the printer will wrap on.                                                           |
+| `tabWidth`           | integer | 2       | Specify the number of spaces per indentation-level.                                                              |
+| `useTabs`            | boolean | false   | Indent lines with tabs instead of spaces.                                                                        |
+| `semi`               | boolean | true    | Print semicolons at the ends of statements.                                                                      |
+| `singleQuote`        | boolean | false   | Use single quotes instead of double quotes.                                                                      |
+| `jsxSingleQuote`     | boolean | false   | Use single quotes instead of double quotes in JSX.                                                               |
+| `trailingComma`      | enum    | "none"  | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
+| `bracketSpacing`     | boolean | true    | Print spaces between brackets in object literals.                                                                |
+| `jsxBracketSameLine` | boolean | false   | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
+| `arrowParens`        | enum    | "avoid" | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
+| `parser`             | string  | "babel" | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
+| `requirePragma`      | boolean | false   | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
+| `insertPragma`       | boolean | false   | Insert a special `@format` marker at the top of files that have been formatted.                                  |
+| `endOfLine`          | enum    | "auto"  | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
 
 ### Prettierx Extensions
 
@@ -331,7 +329,7 @@ Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixanle
 
 ### Fix TypeScript
 
-ESLint does not fix TypeScript files by default. To enable this feature you need the following config in the VS Code settings:
+ESLint does not fix TypeScript files by default. To enable this feature, you need the following config in the VS Code settings:
 
 ```json
 {
