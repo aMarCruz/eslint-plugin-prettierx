@@ -378,7 +378,9 @@ The last line is to format other files with prettierx, if you wish.
 
 Migrating from other tools (tslint, prettier, prettier-eslint, etc).
 
-## Uderstanding Prettierx
+## Understanding prettierx
+
+Prettierx is a fork of prettier which provides a few more options which resolve some conflicts with the Standard JS tool.
 
 ## Precautions
 
