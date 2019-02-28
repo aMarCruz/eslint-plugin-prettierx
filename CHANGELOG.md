@@ -2,9 +2,13 @@
 
 ## \[0.3.1] - 2019-02-27
 
+### Changed
+
 - Update dependencies.
 
-### Changed
+### Fixed
+
+- Wrong references to "plugin:prettier" instead "plugin:prettierx"
 
 ## \[0.3.0] - 2019-02-26
 

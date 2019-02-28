@@ -21,13 +21,13 @@ yarn add eslint eslint-plugin-prettierx -D
 
 Install other plugins that you need.
 
-Now configure ESLint to make it work without conflicts between its internal rules, those of other plugins, and the prettier settings.
+Now configure ESLint to make it work without conflicts between its internal rules, those of other plugins, and the prettierx settings.
 
 1. Add `prettierx` to the "plugins" section of your configuration file (.eslintrc.js, .json, yaml, etc). You can omit the "eslint-plugin-" prefix.
 
 2. Then, in "extends", put the configs of other plugins that you are using. Almost all plugins include configs to enable several of its rules.
 
-3. Bellow these configs, put "plugin:prettier/&lt;preset&gt;", where `<preset>` is the name of the preset (style) that you will use.
+3. Bellow these configs, put "plugin:prettierx/&lt;preset&gt;", where `<preset>` is the name of the preset (style) that you will use.
 
 4. Last, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
 
@@ -134,7 +134,7 @@ In any case, you can use the "prettierx/options" rule, that has precedence over 
 
 ### Bundle Presets
 
-For the "[standardized](https://www.npmjs.com/package/eslint-config-standardize)" bundle, prettierx provides the special config 'plugin:prettier/standardize-bundle', so you do not need to worry about the details.
+For the "[standardized](https://www.npmjs.com/package/eslint-config-standardize)" bundle, prettierx provides the special config 'plugin:prettierx/standardize-bundle', so you do not need to worry about the details.
 
 | WARNING                                                                 |
 | ----------------------------------------------------------------------- |
@@ -149,7 +149,7 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize -D
 ```json
 {
   "plugins": [
-    "prettier",
+    "prettierx",
   ],
   "extends": [
     "standardize"
@@ -168,7 +168,7 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize @typescript-es
 {
   "plugins": [
     "@typescript-eslint"
-    "prettier",
+    "prettierx",
   ],
   "extends": [
     "standardize"
@@ -183,13 +183,13 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize @typescript-es
 
 eslint-plugin-prettierx provide exclusion rules for a few plugins:
 
-- plugin:prettier/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
-- plugin:prettier/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
-- plugin:prettier/flowtype for [eslint-plugin-flowtype](https://www.npmjs.com/package/eslint-plugin-flowtype)
-- plugin:prettier/react [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
-- plugin:prettier/standard [eslint-plugin-standard](https://www.npmjs.com/package/eslint-plugin-standard) (only the plugin)
-- plugin:prettier/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
-- plugin:prettier/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
+- plugin:prettierx/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
+- plugin:prettierx/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
+- plugin:prettierx/flowtype for [eslint-plugin-flowtype](https://www.npmjs.com/package/eslint-plugin-flowtype)
+- plugin:prettierx/react [eslint-plugin-react](https://www.npmjs.com/package/eslint-plugin-react)
+- plugin:prettierx/standard [eslint-plugin-standard](https://www.npmjs.com/package/eslint-plugin-standard) (only the plugin)
+- plugin:prettierx/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
+- plugin:prettierx/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
 
 \* Plugins that do not affect the format ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), stc), does not need exclusions.
 
