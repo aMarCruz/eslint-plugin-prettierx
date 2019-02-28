@@ -1,5 +1,11 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.3.1] - 2019-02-27
+
+- Update dependencies.
+
+### Changed
+
 ## \[0.3.0] - 2019-02-26
 
 ### Changed
