@@ -15,6 +15,10 @@
     "description": "Add spaces around the star (*) in yield* expressions (before and after - from eslint).",
     "type": "boolean"
   },
+  "parenSpacing": {
+    "description": "Inserts extra spaces inside parentheses, the way how projects in the WordPress ecosystem.",
+    "type": "boolean"
+  },
   "indentChains": {
     "description": "Print indents at the start of chained calls.",
     "type": "boolean"

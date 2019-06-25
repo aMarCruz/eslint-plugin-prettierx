@@ -1,5 +1,18 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.4.0] - 2019-06-25
+
+### Added
+
+- New option `quoteProps`, similar to the [quote-props](https://eslint.org/docs/rules/quote-props) option of ESLint.
+- New option `parenSpacing`, which inserts many extra spaces inside parentheses.
+
+### Changed
+
+- The standardize preset is configured with `quoteProps: consistent`.
+- Updated dependencies, using Prettierx v0.7
+- Requires NodeJS v8 or later.
+
 ## \[0.3.1] - 2019-02-27
 
 ### Changed

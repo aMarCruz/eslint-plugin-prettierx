@@ -103,6 +103,15 @@
       { "enum": ["preserve"], "description": "Wrap prose as-is." }
     ]
   },
+  "quoteProps": {
+    "description": "Change when properties in objects are quoted.",
+    "default": "as-needed",
+    "oneOf": [
+      { "enum": ["as-needed"], "description": "Only add quotes around object properties where required." },
+      { "enum": ["consistent"], "description": "If at least one property in an object requires quotes, quote all properties." },
+      { "enum": ["preserve"], "description": "Respect the input use of quotes in object properties." }
+    ]
+  },
   "requirePragma": {
     "description": "Require either '@prettier' or '@format' to be present in the file's first docblock comment\nin order for it to be formatted.",
     "type": "boolean"
