@@ -1,5 +1,17 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.5.0] - 2019-10-30
+
+### Changed
+
+- Update Prettierx 0.8.0, based on Prettier 1.8.0
+- Update the (fake) Prettier sub-package.
+- Requires minimum Node 8 and ESLint 6.0.1
+
+### Removed
+
+- Test with StandardJS and others.
+
 ## \[0.4.0] - 2019-06-25
 
 ### Added

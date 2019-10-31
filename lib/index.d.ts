@@ -2,7 +2,7 @@
 
 // @ts-ignore
 interface ObjectConstructor {
-  keys<T extends {}>(obj: T): Array<Extract<keyof T, string>>
+  keys<T extends {}>(obj: T): Extract<keyof T, string>[]
 }
 
 type Omit<T extends object, K> = Pick<T, Exclude<keyof T, K>>
@@ -26,7 +26,7 @@ interface PrettierError extends SyntaxError {
   [k: string]: any
 }
 
-type RangeLoc = [number,number]
+type RangeLoc = [number, number]
 
 type RuleModule = import('eslint').Rule.RuleModule
 type RuleContext = import('eslint').Rule.RuleContext

@@ -9,9 +9,9 @@ Good examples are [prettier-eslint](https://www.npmjs.com/package/prettier-eslin
 You need install Prettierx first, then this package:
 
 ```sh
-mkdir prettier
-cp ./node_modules/eslint-config-standardize/prettier/* prettier/
-yarn add prettierx -D && yarn add ./prettier
+mkdir .prettier
+cp ./node_modules/eslint-plugin-prettierx/prettier/* .prettier/
+yarn add prettierx file:.prettier -D
 ```
 
 ## License

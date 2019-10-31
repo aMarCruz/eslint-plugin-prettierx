@@ -11,6 +11,7 @@
   "jsxSingleQuote": false,
   "printWidth": 92,
   "proseWrap": "never",
+  "quoteProps": "consistent",
   "requirePragma": false,
   "semi": false,
   "singleQuote": true,

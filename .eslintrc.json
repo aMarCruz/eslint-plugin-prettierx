@@ -2,6 +2,7 @@
   "root": true,
   "extends": [
     "standardize",
+    "standardize/typescript",
     "standardize/node-only"
   ]
 }
