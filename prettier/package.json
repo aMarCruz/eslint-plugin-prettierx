@@ -1,14 +1,18 @@
 {
   "name": "prettier",
-  "version": "1.18.0",
+  "version": "1.19.1",
   "description": "Prettier(x) is an opinionated code formatter",
   "main": "./index.js",
   "author": "James Long",
   "bin": {
     "prettier": "../prettierx/bin-prettierx.js"
   },
-  "peerDependencies": {
-    "prettierx": "^0.8.0"
+  "engines": {
+    "node": ">=8"
   },
+  "peerDependencies": {
+    "prettierx": "~0.10.0"
+  },
+  "homepage": "https://github.com/brodybits/prettierx",
   "license": "MIT"
 }

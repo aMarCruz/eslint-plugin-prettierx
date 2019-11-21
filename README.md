@@ -7,7 +7,7 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 - Based on ESLint or external configuration.
 - Presets\* for default options.
 
-For use with ESLint v6.0.1 as minimum, for ESLint v5.x use eslint-config-prettierx 0.4.x
+For use with ESLint v6.2.2 as minimum, for ESLint v5.x use eslint-config-prettierx 0.4.x
 
 Minimum NodeJS version supported: NodeJS 8 - deprecated; NodeJS 10 is recommended as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
 
@@ -378,7 +378,7 @@ and add this config to your package.json
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "git add"],
+    "*.{js,mjs,jsx,ts,tsx}": ["eslint --fix", "git add"],
     "*.{md,json,css}": ["prettierx --write", "git add"]
   }
 }

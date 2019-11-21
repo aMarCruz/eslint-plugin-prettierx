@@ -1,3 +1,4 @@
 /* eslint-disable */
 // @ts-nocheck
-module.exports = require('prettierx')
+const version = require('./package.json').version
+module.exports = Object.assign(require('prettierx'), { version })

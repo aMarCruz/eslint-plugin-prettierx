@@ -1,5 +1,13 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.10.0] - 2019-11-21
+
+### Changed
+
+- Version of this package follows the [prettierx](https://github.com/brodybits/prettierx) version.
+- Updated dependencies, including Prettierx based on Prettier 1.9.1
+- ESLint minimum is v6.2.2
+
 ## \[0.5.0] - 2019-10-30
 
 ### Changed
