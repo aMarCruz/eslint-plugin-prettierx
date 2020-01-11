@@ -1,4 +1,5 @@
 {
+  "alignObjectProperties": false,
   "alignTernaryLines": false,
   "arrowParens": "avoid",
   "bracketSpacing": true,
@@ -9,8 +10,9 @@
   "insertPragma": false,
   "jsxBracketSameLine": false,
   "jsxSingleQuote": false,
+  "parenSpacing": false,
   "printWidth": 92,
-  "proseWrap": "never",
+  "proseWrap": "preserve",
   "quoteProps": "consistent",
   "requirePragma": false,
   "semi": false,
@@ -19,15 +21,5 @@
   "tabWidth": 2,
   "trailingComma": "es5",
   "useTabs": false,
-  "yieldStarSpacing": true,
-  "overrides": [
-    {
-      "files": ".prettierrc",
-      "options": { "parser": "json" }
-    },
-    {
-      "files": ".babelrc",
-      "options": { "parser": "json" }
-    }
-  ]
+  "yieldStarSpacing": true
 }
