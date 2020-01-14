@@ -46,25 +46,25 @@ yarn add eslint eslint-plugin-prettierx eslint-plugin-react @typescript-eslint/p
 Configure eslint
 
 ```js
-{
+module.exports = {
   // "root" is optional, avoids searching eslintrc upwards.
   root: true,
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
-    es6: true
+    es6: true,
   },
   // the prettierx plugin already sets ecmaVersion 2018,
   // sourceType "module" and enables ecmaFeatures.jsx
   parserOptions: {
     warnOnUnsupportedTypeScriptVersion: false,
-  }
+  },
 
   plugins: [
     '@typescript-eslint',
     'react',
     // 1. Add the prettierx plugin
-    'prettierx'
+    'prettierx',
   ],
   extends: [
     // optional, the eslint recommended config
@@ -81,7 +81,7 @@ Configure eslint
 }
 ```
 
-That is all! but you can personalize it, if you want.
+That's all! but you can personalize it, if you want.
 
 See the provided [exclusions](#exlusions) later in this doc.
 
@@ -138,17 +138,11 @@ These are the prettierx [options](#options) used for each preset:
 | `useTabs`                  | false       | false       | false        |
 | `yieldStarSpacing`         | false       | true        | true         |
 
-If you want to configure prettierx by means of a file .prettierrc or .editorconfig, add `usePrettierrc: true` in the "[settings.prettierx](#settings)" section of your ESLint config if you are using the "standardx" or "standardize" presets. The preset "default" already set this to `true`.
-
-In any case, you can use the "prettierx/options" rule, that has precedence over other options.
+You can override individual options through a .prettierrc or .editorconfig file or through the "prettierx/options" rule of your ESLint config.
 
 ### Bundle Presets
 
 For the "[standardized](https://www.npmjs.com/package/eslint-config-standardize)" bundle, prettierx provides the special config 'plugin:prettierx/standardize-bundle', so you do not need to worry about the details.
-
-| WARNING                                                                 |
-| ----------------------------------------------------------------------- |
-| From v0.3.0 you must set the 'standardize' config in "extends" manually |
 
 #### Usage
 
@@ -254,9 +248,9 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
 - **`usePrettierrc`**
 
-  Type: `boolean`, default: `false` for "default", `true` for other presets.
+  Type: `boolean`, default: `true`.
 
-  Set to `true` to look for a [configuration file](https://prettier.io/docs/en/configuration.html), if `false` the plugin or default settings will be used.
+  Set to `false` to ignore any [configuration file](https://prettier.io/docs/en/configuration.html).
 
 - **`editorconfig`**
 
@@ -299,35 +293,35 @@ All allowed, but not all makes sense.
 
 ### Prettier Options
 
-| Property | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `printWidth` | integer | 80 | Specify the line length that the printer will wrap on. |
-| `tabWidth` | integer | 2 | Specify the number of spaces per indentation-level. |
-| `useTabs` | boolean | false | Indent lines with tabs instead of spaces. |
-| `semi` | boolean | true | Print semicolons at the ends of statements. |
-| `singleQuote` | boolean | false | Use single quotes instead of double quotes. |
-| `jsxSingleQuote` | boolean | false | Use single quotes instead of double quotes in JSX. |
-| `quoteProps` | string | "as-needed" | Change when properties in objects are quoted. Valid options: 'as-needed', 'consistent', 'preserve'. |
-| `trailingComma` | enum | "none" | (none, es5, all) Print trailing commas wherever possible when multi-line. |
-| `bracketSpacing` | boolean | true | Print spaces between brackets in object literals. |
-| `jsxBracketSameLine` | boolean | false | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line. |
-| `arrowParens` | enum | "avoid" | (avoid, always) Include parentheses around a sole arrow function parameter. |
-| `parser` | string | "babel" | Specify which parser to use. Yo can also pass an already `require`d parser. |
-| `requirePragma` | boolean | false | Restrict to only format files that contain a special comment (`@prettier` or `@format`). |
-| `insertPragma` | boolean | false | Insert a special `@format` marker at the top of files that have been formatted. |
-| `endOfLine` | enum | "auto" | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
+| Property             | Type    | Default     | Notes                                                                                                            |
+| -------------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `printWidth`         | integer | 80          | Specify the line length that the printer will wrap on.                                                           |
+| `tabWidth`           | integer | 2           | Specify the number of spaces per indentation-level.                                                              |
+| `useTabs`            | boolean | false       | Indent lines with tabs instead of spaces.                                                                        |
+| `semi`               | boolean | true        | Print semicolons at the ends of statements.                                                                      |
+| `singleQuote`        | boolean | false       | Use single quotes instead of double quotes.                                                                      |
+| `jsxSingleQuote`     | boolean | false       | Use single quotes instead of double quotes in JSX.                                                               |
+| `quoteProps`         | string  | "as-needed" | Change when properties in objects are quoted. Valid options: 'as-needed', 'consistent', 'preserve'.              |
+| `trailingComma`      | enum    | "none"      | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
+| `bracketSpacing`     | boolean | true        | Print spaces between brackets in object literals.                                                                |
+| `jsxBracketSameLine` | boolean | false       | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
+| `arrowParens`        | enum    | "avoid"     | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
+| `parser`             | string  | "babel"     | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
+| `requirePragma`      | boolean | false       | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
+| `insertPragma`       | boolean | false       | Insert a special `@format` marker at the top of files that have been formatted.                                  |
+| `endOfLine`          | enum    | "auto"      | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
 
 ### Prettierx Extensions
 
-| Property | Type | Default | Notes |
-| --- | --- | --- | --- |
-| `alignObjectProperties` | boolean | false | Align colons in multiline object literals (not applied with any of the JSON parsers). |
-| `spaceBeforeFunctionParen` | boolean | false | Put a space before function parenthesis. |
-| `generatorStarSpacing` | boolean | false | Add spaces around the star (\*) in generator functions. |
-| `yieldStarSpacing` | boolean | false | Add spaces around the star (\*) in `yield` expressions. |
-| `parenSpacing` | boolean | false | Inserts extra spaces inside parentheses, the way how projects in the WordPress ecosystem (Calypso, Gutenberg, etc.). |
-| `alignTernaryLines` | boolean | true | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
-| `indentChains` | boolean | true | Print indents at the start of chained calls. |
+| Property                   | Type    | Default | Notes                                                                                                                      |
+| -------------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `alignObjectProperties`    | boolean | false   | Align colons in multiline object literals (not applied with any of the JSON parsers).                                      |
+| `spaceBeforeFunctionParen` | boolean | false   | Put a space before function parenthesis.                                                                                   |
+| `generatorStarSpacing`     | boolean | false   | Add spaces around the star (\*) in generator functions.                                                                    |
+| `yieldStarSpacing`         | boolean | false   | Add spaces around the star (\*) in `yield` expressions.                                                                    |
+| `parenSpacing`             | boolean | false   | Inserts extra spaces inside parentheses, the way how projects in the WordPress ecosystem (Calypso, Gutenberg, etc.).       |
+| `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
+| `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
 
 ## VS Code ESLint
 
