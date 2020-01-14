@@ -5,7 +5,6 @@ interface ObjectConstructor {
   keys<T extends {}>(obj: T): Extract<keyof T, string>[]
 }
 
-type Omit<T extends object, K> = Pick<T, Exclude<keyof T, K>>
 type Dict<T = any> = { [k: string]: T }
 
 interface DictStr {
