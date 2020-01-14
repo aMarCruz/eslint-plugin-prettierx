@@ -105,7 +105,6 @@
   },
   "quoteProps": {
     "description": "Change when properties in objects are quoted.",
-    "default": "as-needed",
     "oneOf": [
       {
         "enum": ["as-needed"],
