@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "eslint-config-prettier": "~6.9.0",
-    "eslint-find-rules": "^3.4.0",
     "prettier-linter-helpers": "~1.0.0",
     "prettierx": "~0.11.0"
   },
