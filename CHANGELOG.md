@@ -1,5 +1,23 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.11.0] - 2019-01-27
+
+### Changed
+
+- Now "settings.usePrettierrc" defaults to `true` for all presets.
+- Revised prettierrc.json defaults, now includes "parenSpacing" support.
+- Require nodeJS 10.12 or later.
+- Updated devDependencies.
+
+### Fixed
+
+- Value of "quoteProps" must be "as-needed" in the "standardx" preset.
+
+### Removed
+
+- Removed fake Prettier package, please use [aMarCruz/prettier](https://github.com/aMarCruz/prettier).
+- Removed TSLint, now using ESLint as TypeScript linter.
+
 ## \[0.10.0] - 2019-11-21
 
 ### Changed
