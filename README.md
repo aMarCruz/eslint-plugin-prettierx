@@ -7,13 +7,13 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 - Based on ESLint or external configuration.
 - Presets\* for default options.
 
-For use with ESLint v6.2.2 as minimum, for ESLint v5.x use eslint-config-prettierx 0.4.x
+For use with ESLint v6.8.0 as minimum, for ESLint v5.x use eslint-config-prettierx 0.11 or bellow
 
-Minimum NodeJS version supported: NodeJS 8 - deprecated; NodeJS 10 is recommended as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
+Minimum NodeJS version supported: NodeJS 10.12.0 or 12.0.0 and above, as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
 
 ## Note
 
-In v0.5 there are breaking changes, please see the [Changelog](CHANGELOG.md) for more info.
+Please see the [Changelog](CHANGELOG.md) for more info.
 
 If you are using the [(fake) Prettier](#prettier) package, please update it.
 
@@ -22,7 +22,7 @@ If you are using the [(fake) Prettier](#prettier) package, please update it.
 Install [ESLint](http://eslint.org) v6.x and the Prettierx plugin with npm or yarn:
 
 ```bash
-yarn add eslint@6.x eslint-plugin-prettierx -D
+yarn add eslint@6.8.x eslint-plugin-prettierx -D
 ```
 
 Install other plugins that you need.
@@ -113,12 +113,13 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 These are the prettierx [options](#options) used for each preset:
 
-| &nbsp;                     | default     | standardx   | standardize  |
+| &nbsp;                     | default\*   | standardx   | standardize  |
 | -------------------------- | ----------- | ----------- | ------------ |
 | `alignObjectProperties`    | false       | false       | false        |
 | `alignTernaryLines`        | true        | false       | false        |
 | `arrowParens`              | "avoid      | "avoid      | "avoid"      |
 | `bracketSpacing`           | true        | true        | true         |
+| `breakBeforeElse`          | false       | false       | false        |
 | `endOfLine`                | "auto"      | "lf"        | "lf"         |
 | `generatorStarSpacing`     | false       | true        | true         |
 | `indentChains`             | true        | true        | true         |
@@ -137,6 +138,8 @@ These are the prettierx [options](#options) used for each preset:
 | `trailingComma`            | "none"      | "none"      | "es5"        |
 | `useTabs`                  | false       | false       | false        |
 | `yieldStarSpacing`         | false       | true        | true         |
+
+\* **defaults for Prettier 1.19.1**
 
 You can override individual options through a .prettierrc or .editorconfig file or through the "prettierx/options" rule of your ESLint config.
 
@@ -322,6 +325,7 @@ All allowed, but not all makes sense.
 | `parenSpacing`             | boolean | false   | Inserts extra spaces inside parentheses, the way how projects in the WordPress ecosystem (Calypso, Gutenberg, etc.).       |
 | `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
 | `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
+| `breakBeforeElse`          | boolean | false   | Always add a line break before else.                                                                                       |
 
 ## VS Code ESLint
 
@@ -339,12 +343,10 @@ ESLint does not fix TypeScript files by default. To enable this feature, you nee
 
 ```json
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    { "language": "typescript", "autoFix": true },
-    { "language": "typescriptreact", "autoFix": true }
-  ]
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true // or "source.fixAll.eslint": true
+  }
 }
 ```
 
@@ -372,8 +374,8 @@ and add this config to your package.json
     }
   },
   "lint-staged": {
-    "*.{js,mjs,jsx,ts,tsx}": ["eslint --fix", "git add"],
-    "*.{md,json,css}": ["prettierx --write", "git add"]
+    "*.{js,mjs,jsx,ts,tsx}": ["eslint --fix"],
+    "*.{md,json,css}": ["prettierx --write"]
   }
 }
 ```

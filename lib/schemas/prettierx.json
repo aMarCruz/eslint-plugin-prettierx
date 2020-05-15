@@ -26,5 +26,9 @@
   "alignTernaryLines": {
     "description": "Align ternary lines in case of multiline ternery term (default behavior, conflict with standard)",
     "type": "boolean"
+  },
+  "breakBeforeElse": {
+    "description": "Always add a line break before else.",
+    "type": "boolean"
   }
 }

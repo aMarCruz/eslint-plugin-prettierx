@@ -1,5 +1,18 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.12.0] - 2020-05-15
+
+### Added
+
+- Support for the new PrettierX option [`breakBeforeElse`](https://github.com/brodybits/prettierx/pull/224).
+
+### Changed
+
+- Using prettierx v0.12.0
+- Revised prettierrc.json now includes "breakBeforeElse" support.
+- Updated year in the LICENSE file.
+- Updated devDependencies.
+
 ## \[0.11.0] - 2019-01-27
 
 ### Changed

@@ -3,6 +3,7 @@
   "alignTernaryLines": false,
   "arrowParens": "avoid",
   "bracketSpacing": true,
+  "breakBeforeElse": false,
   "endOfLine": "lf",
   "generatorStarSpacing": true,
   "htmlWhitespaceSensitivity": "css",
