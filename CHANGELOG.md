@@ -1,5 +1,19 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.12.1] - 2020-05-28
+
+This is the last version with support for ESLint 6.x and typescript-eslint v2.x
+
+### Added
+
+- typescript version >= 3.2 in `peerDependencies` to allow compatibility with typescript-eslint v2.34
+
+### Changed
+
+- Updated README.md, now includes default for Prettier v2
+- Updated dependencies
+- Use "^" instead "~" in the Prettierx version of `dependencies`
+
 ## \[0.12.0] - 2020-05-15
 
 ### Added

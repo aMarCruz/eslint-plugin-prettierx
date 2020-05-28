@@ -9,7 +9,7 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 
 For use with ESLint v6.8.0 as minimum, for ESLint v5.x use eslint-config-prettierx 0.11 or bellow
 
-Minimum NodeJS version supported: NodeJS 10.12.0 or 12.0.0 and above, as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
+Minimum NodeJS version supported: NodeJS 10.13.0 or 12.0.0 and above, as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
 
 ## Note
 
@@ -67,14 +67,14 @@ module.exports = {
     'prettierx',
   ],
   extends: [
-    // optional, the eslint recommended config
+    // OPTIONAL: the eslint recommended config
     'eslint:recommended',
-    // 2. configs to enable plugin rules
+    // OPTIONAL: configs to enable plugin rules
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    // 3. prettierx settings with the "standardx" style
+    // 2. prettierx settings with the "standardx" style
     'plugin:prettierx/standardx',
-    // 4. add exclusions for additional plugins
+    // 3. add exclusions for additional plugins
     'plugin:prettierx/@typescript-eslint',
     'plugin:prettierx/react',
   ],
@@ -113,35 +113,33 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 These are the prettierx [options](#options) used for each preset:
 
-| &nbsp;                     | default\*   | standardx   | standardize  |
-| -------------------------- | ----------- | ----------- | ------------ |
-| `alignObjectProperties`    | false       | false       | false        |
-| `alignTernaryLines`        | true        | false       | false        |
-| `arrowParens`              | "avoid      | "avoid      | "avoid"      |
-| `bracketSpacing`           | true        | true        | true         |
-| `breakBeforeElse`          | false       | false       | false        |
-| `endOfLine`                | "auto"      | "lf"        | "lf"         |
-| `generatorStarSpacing`     | false       | true        | true         |
-| `indentChains`             | true        | true        | true         |
-| `insertPragma`             | false       | false       | false        |
-| `jsxBracketSameLine`       | false       | false       | false        |
-| `jsxSingleQuote`           | false       | true        | false        |
-| `parenSpacing`             | false       | false       | false        |
-| `parser`                   | "babel      | "babel      | "babel"      |
-| `printWidth`               | 80          | 80          | 92           |
-| `quoteProps`               | "as-needed" | "as-needed" | "consistent" |
-| `requirePragma`            | false       | false       | false        |
-| `semi`                     | true        | false       | false        |
-| `singleQuote`              | false       | true        | true         |
-| `spaceBeforeFunctionParen` | false       | true        | true         |
-| `tabWidth`                 | 2           | 2           | 2            |
-| `trailingComma`            | "none"      | "none"      | "es5"        |
-| `useTabs`                  | false       | false       | false        |
-| `yieldStarSpacing`         | false       | true        | true         |
+| &nbsp;                     | Prettier 1.x | Prettier 2.x | standardx   | standardize  |
+| -------------------------- | ------------ | ------------ | ----------- | ------------ |
+| `alignObjectProperties`    | false        | false        | false       | false        |
+| `alignTernaryLines`        | true         | true         | false       | false        |
+| `arrowParens`              | "avoid"      | "always"     | "avoid"     | "avoid"      |
+| `bracketSpacing`           | true         | true         | true        | true         |
+| `breakBeforeElse`          | false        | false        | false       | false        |
+| `endOfLine`                | "auto"       | "lf"         | "lf"        | "lf"         |
+| `generatorStarSpacing`     | false        | false        | true        | true         |
+| `indentChains`             | true         | true         | true        | true         |
+| `insertPragma`             | false        | false        | -           | false        |
+| `jsxBracketSameLine`       | false        | false        | false       | false        |
+| `jsxSingleQuote`           | false        | false        | true        | false        |
+| `parenSpacing`             | false        | false        | false       | false        |
+| `parser`                   | "babel"      | "babel"      | "babel"     | "babel"      |
+| `printWidth`               | 80           | 80           | 80          | 92           |
+| `quoteProps`               | "as-needed"  | "as-needed"  | "as-needed" | "consistent" |
+| `requirePragma`            | false        | false        | -           | false        |
+| `semi`                     | true         | true         | false       | false        |
+| `singleQuote`              | false        | false        | true        | true         |
+| `spaceBeforeFunctionParen` | false        | false        | true        | true         |
+| `tabWidth`                 | 2            | 2            | 2           | 2            |
+| `trailingComma`            | "none"       | "es5"        | "none"      | "es5"        |
+| `useTabs`                  | false        | false        | false       | false        |
+| `yieldStarSpacing`         | false        | false        | true        | true         |
 
-\* **defaults for Prettier 1.19.1**
-
-You can override individual options through a .prettierrc or .editorconfig file or through the "prettierx/options" rule of your ESLint config.
+You can override individual options through a .prettierrc(.json) or .editorconfig file or through the "`prettierx/options`" rule of your ESLint config.
 
 ### Bundle Presets
 
