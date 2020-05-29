@@ -153,13 +153,8 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize -D
 
 ```json
 {
-  "plugins": [
-    "prettierx",
-  ],
-  "extends": [
-    "standardize"
-    "plugin:prettierx/standardize-bundle"
-  ]
+  "plugins": ["prettierx"],
+  "extends": ["standardize", "plugin:prettierx/standardize-bundle"]
 }
 ```
 
@@ -171,14 +166,11 @@ yarn add eslint eslint-plugin-prettierx eslint-config-standardize @typescript-es
 
 ```json
 {
-  "plugins": [
-    "@typescript-eslint"
-    "prettierx",
-  ],
+  "plugins": ["@typescript-eslint", "prettierx"],
   "extends": [
-    "standardize"
+    "standardize",
     "standardize/typescript",
-    "plugin:prettierx/standardize-bundle"
+    "plugin:prettierx/standardize-bundle",
     "plugin:prettierx/@typescript-eslint"
   ]
 }
@@ -203,12 +195,13 @@ eslint-plugin-prettierx provide exclusion rules for a few plugins:
 Because the way that Prettierx works, this plugin has one only rule: `prettierx/options`, that contains all the plugin options.
 
 ```js
-  'prettierx/options': [severity, options]
+  "prettierx/options": [severity, options]
 ```
 
 - **`severity`**
 
-  Common severity option for ESLint rules: `0`, `1`, `2`, "off", "warn", "error". The last turns prettierx off.
+  Common severity option for ESLint rules: `0`, `1`, `2`, "off", "warn", "error".
+  Use `0` or "off" to disable prettierx.
 
 - **`options`**
 
@@ -263,10 +256,10 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
   This configuration will be overridden by `.prettierrc`, etc. Currently, the following EditorConfig properties are supported:
 
-  - end_of_line
-  - indent_style
-  - indent_size/tab_width
-  - max_line_length
+  - `end_of_line`
+  - `indent_style`
+  - `indent_size/tab_width`
+  - `max_line_length`
 
 - **`ignorePath`**
 
