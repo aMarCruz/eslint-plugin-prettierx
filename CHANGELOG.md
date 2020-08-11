@@ -1,5 +1,13 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.14.0] - 2020-08-10
+
+### Changed
+
+- Updated internal typings
+- Updated dependencies, prettiex 0.14.0 and ESLint 7.2 or later
+- Updated Readme
+
 ## \[0.13.1] - 2020-08-10
 
 ### Changed
