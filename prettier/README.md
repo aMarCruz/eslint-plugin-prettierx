@@ -5,7 +5,7 @@ Please use [aMarCruz/prettier](https://github.com/aMarCruz/prettier) in your pac
 ```json
 {
   "devDependencies": {
-    "prettier": "aMarCruz/prettier#1.19.1"
+    "prettier": "aMarCruz/prettier#2.0.4"
   }
 }
 ```

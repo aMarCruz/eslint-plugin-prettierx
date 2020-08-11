@@ -1,5 +1,12 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.13.0] - 2020-08-10
+
+### Changed
+
+- Updated internal typings
+- Updated dependencies, prettiex 0.13.1 and ESLint 7.2 or later
+
 ## \[0.12.1] - 2020-05-28
 
 This is the last version with support for ESLint 6.x and typescript-eslint v2.x

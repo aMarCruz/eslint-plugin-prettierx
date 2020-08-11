@@ -1,23 +1,14 @@
 /// <reference lib="es5"/>
 
-// @ts-ignore
-interface ObjectConstructor {
-  keys<T extends {}>(obj: T): Extract<keyof T, string>[]
-}
-
 type Dict<T = any> = { [k: string]: T }
 
 interface DictStr {
   [k: string]: string
 }
 
-declare module '*.json' {
-  const json: Dict
-  export = json
+interface ObjectConstructor {
+  keys<T extends Dict>(obj: T): Extract<keyof T, string>[]
 }
-
-// declare const plugin: Dict
-// export = plugin
 
 type Prettier = typeof import('prettier')
 
