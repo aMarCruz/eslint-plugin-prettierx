@@ -53,12 +53,5 @@
     "eslint": ">=7.15.0",
     "typescript": ">=4.1.0"
   },
-  {
-    "peerDependenciesMeta": {
-      "typescript": {
-        "optional": true
-      }
-    }
-  },
   "license": "MIT"
 }
