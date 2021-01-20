@@ -1,5 +1,17 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.16.0] - 2021-01-19
+
+### Added
+
+- Set new rule `breakLongMethodChains` to `true`.
+
+### Changed
+
+- Updated Readme
+- Updated dependencies, prettiex 0.16.0 and ESLint 7.15 or later
+- Updated TypeScript to v4.1.x
+
 ## \[0.14.0] - 2020-08-10
 
 ### Changed

@@ -27,8 +27,12 @@
     "description": "Align ternary lines in case of multiline ternery term (default behavior, conflict with standard)",
     "type": "boolean"
   },
-  "breakBeforeElse": {
-    "description": "Always add a line break before else.",
+  "htmlVoidTags": {
+    "description": "Format void HTML elements as void tags.",
+    "type": "boolean"
+  },
+  "breakLongMethodChains": {
+    "description": "Break method chains with more than 3 method calls, like Prettier 1.x.",
     "type": "boolean"
   }
 }

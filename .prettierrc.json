@@ -4,6 +4,7 @@
   "arrowParens": "avoid",
   "bracketSpacing": true,
   "breakBeforeElse": false,
+  "breakLongMethodChains": true,
   "endOfLine": "lf",
   "generatorStarSpacing": true,
   "htmlWhitespaceSensitivity": "css",

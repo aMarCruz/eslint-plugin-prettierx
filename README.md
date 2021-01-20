@@ -7,7 +7,7 @@ Format your code with ESLint using [Prettierx](https://github.com/brodybits/pret
 - Based on ESLint or external configuration.
 - Presets\* for default options.
 
-For use with ESLint v7.2.0 as minimum, for ESLint v7.1 or lower use eslint-config-prettierx 0.13 or bellow.
+For use with ESLint v7.15.0 as minimum, for ESLint v7.14 or lower use eslint-config-prettierx 0.14 or bellow.
 
 Minimum NodeJS version supported: NodeJS 10.13.0 or 12.0.0 and above, as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
 
@@ -52,7 +52,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   env: {
     browser: true,
-    es6: true,
+    es2021: true,
   },
   // the prettierx plugin already sets ecmaVersion 2018,
   // sourceType "module" and enables ecmaFeatures.jsx
@@ -120,6 +120,7 @@ These are the prettierx [options](#options) used for each preset:
 | `arrowParens`              | "always"     | "avoid"     | "avoid"      |
 | `bracketSpacing`           | true         | true        | true         |
 | `breakBeforeElse`          | false        | false       | false        |
+| `breakLongMethodChains`    | false        | false       | true         |
 | `endOfLine`                | "lf"         | "lf"        | "lf"         |
 | `generatorStarSpacing`     | false        | true        | true         |
 | `indentChains`             | true         | true        | true         |
@@ -287,23 +288,24 @@ All allowed, but not all makes sense.
 
 ### Prettier Options
 
-| Property             | Type    | Default     | Notes                                                                                                            |
-| -------------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
-| `printWidth`         | integer | 80          | Specify the line length that the printer will wrap on.                                                           |
-| `tabWidth`           | integer | 2           | Specify the number of spaces per indentation-level.                                                              |
-| `useTabs`            | boolean | false       | Indent lines with tabs instead of spaces.                                                                        |
-| `semi`               | boolean | true        | Print semicolons at the ends of statements.                                                                      |
-| `singleQuote`        | boolean | false       | Use single quotes instead of double quotes.                                                                      |
-| `jsxSingleQuote`     | boolean | false       | Use single quotes instead of double quotes in JSX.                                                               |
-| `quoteProps`         | string  | "as-needed" | Change when properties in objects are quoted. Valid options: 'as-needed', 'consistent', 'preserve'.              |
-| `trailingComma`      | enum    | "none"      | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
-| `bracketSpacing`     | boolean | true        | Print spaces between brackets in object literals.                                                                |
-| `jsxBracketSameLine` | boolean | false       | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
-| `arrowParens`        | enum    | "avoid"     | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
-| `parser`             | string  | "babel"     | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
-| `requirePragma`      | boolean | false       | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
-| `insertPragma`       | boolean | false       | Insert a special `@format` marker at the top of files that have been formatted.                                  |
-| `endOfLine`          | enum    | "auto"      | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
+| Property                     | Type    | Default     | Notes                                                                                                            |
+| ---------------------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `printWidth`                 | integer | 80          | Specify the line length that the printer will wrap on.                                                           |
+| `tabWidth`                   | integer | 2           | Specify the number of spaces per indentation-level.                                                              |
+| `useTabs`                    | boolean | false       | Indent lines with tabs instead of spaces.                                                                        |
+| `semi`                       | boolean | true        | Print semicolons at the ends of statements.                                                                      |
+| `singleQuote`                | boolean | false       | Use single quotes instead of double quotes.                                                                      |
+| `jsxSingleQuote`             | boolean | false       | Use single quotes instead of double quotes in JSX.                                                               |
+| `quoteProps`                 | string  | "as-needed" | Change when properties in objects are quoted. Valid options: 'as-needed', 'consistent', 'preserve'.              |
+| `trailingComma`              | enum    | "none"      | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
+| `bracketSpacing`             | boolean | true        | Print spaces between brackets in object literals.                                                                |
+| `jsxBracketSameLine`         | boolean | false       | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
+| `arrowParens`                | enum    | "avoid"     | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
+| `parser`                     | string  | "babel"     | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
+| `requirePragma`              | boolean | false       | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
+| `insertPragma`               | boolean | false       | Insert a special `@format` marker at the top of files that have been formatted.                                  |
+| `endOfLine`                  | enum    | "auto"      | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
+| `embeddedLanguageFormatting` | boolean | "auto"      | Control whether Prettier formats quoted code embedded in the file.                                               |
 
 ### Prettierx Extensions
 
@@ -317,6 +319,8 @@ All allowed, but not all makes sense.
 | `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
 | `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
 | `breakBeforeElse`          | boolean | false   | Always add a line break before else.                                                                                       |
+| `htmlVoidTags`             | boolean | false   | Format void HTML elements as void tags.                                                                                    |
+| `breakLongMethodChains`    | boolean | false   | Break method chains with more than 3 method calls, like Prettier 1.x.                                                      |
 
 ## VS Code ESLint
 

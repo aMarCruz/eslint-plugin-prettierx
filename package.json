@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-prettierx",
-  "version": "0.14.0",
+  "version": "0.16.0",
   "description": "Format your code with ESLint using Prettierx, with presets for Prettier and StandardJS",
   "keywords": [
     "eslint",
@@ -35,23 +35,23 @@
     "test": "eslint -f unix --ext .js,.ts,.tsx bin lib && cd .. && echo Test passed."
   },
   "dependencies": {
-    "eslint-config-prettier": "~6.11.0",
+    "eslint-config-prettier": "~7.2.0",
     "prettier-linter-helpers": "~1.0.0",
-    "prettierx": "~0.14.0"
+    "prettierx": "~0.16.0"
   },
   "devDependencies": {
-    "@types/eslint": "~7.2.0",
-    "@types/node": "~14.0.27",
-    "@types/prettier": "~2.0.2",
-    "@typescript-eslint/eslint-plugin": "~3.9.0",
-    "@typescript-eslint/parser": "~3.9.0",
-    "eslint": "~7.6.0",
-    "eslint-config-standardize": "~0.7.1",
-    "typescript": "~3.9.7"
+    "@types/eslint": "~7.2.6",
+    "@types/node": "~14.14.22",
+    "@types/prettier": "~2.1.6",
+    "@typescript-eslint/eslint-plugin": "~4.14.0",
+    "@typescript-eslint/parser": "~4.14.0",
+    "eslint": "~7.18.0",
+    "eslint-config-standardize": "~0.7.2",
+    "typescript": "~4.1.3"
   },
   "peerDependencies": {
-    "eslint": ">=7.2.0",
-    "typescript": ">=3.8.0"
+    "eslint": ">=7.15.0",
+    "typescript": ">=4.1.0"
   },
   "license": "MIT"
 }
