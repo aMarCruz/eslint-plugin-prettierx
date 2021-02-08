@@ -1,5 +1,25 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.17.0] - 2021-02-07
+
+### Added
+
+- Remove obsolete options and add new ones from PrettierX 0.17, see [options removed]('prettierx: Clearing prettier cache...')
+
+### Changed
+
+- Use default value (`false`) for the `breakLongMethodChains` option (sorry).
+- Updated PrettierX to 0.17.0
+
+### Removed
+
+- Remove the 'prettierx: Clearing prettier cache...' message.
+- Remove obsolete folder of the fake prettier package.
+
+### Fixed
+
+- Fix #7 Unable to use standardx anymore
+
 ## \[0.16.0] - 2021-01-19
 
 ### Added

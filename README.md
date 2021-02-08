@@ -116,18 +116,17 @@ These are the prettierx [options](#options) used for each preset:
 | &nbsp;                     | Prettier 2.x | standardx   | standardize  |
 | -------------------------- | ------------ | ----------- | ------------ |
 | `alignObjectProperties`    | false        | false       | false        |
-| `alignTernaryLines`        | true         | false       | false        |
+| `offsetTernaryExpressions` | false        | true        | true         |
 | `arrowParens`              | "always"     | "avoid"     | "avoid"      |
 | `bracketSpacing`           | true         | true        | true         |
 | `breakBeforeElse`          | false        | false       | false        |
-| `breakLongMethodChains`    | false        | false       | true         |
+| `breakLongMethodChains`    | false        | false       | false        |
 | `endOfLine`                | "lf"         | "lf"        | "lf"         |
 | `generatorStarSpacing`     | false        | true        | true         |
 | `indentChains`             | true         | true        | true         |
 | `insertPragma`             | false        | -           | false        |
 | `jsxBracketSameLine`       | false        | false       | false        |
 | `jsxSingleQuote`           | false        | true        | false        |
-| `parenSpacing`             | false        | false       | false        |
 | `parser`                   | "babel"      | "babel"     | "babel"      |
 | `printWidth`               | 80           | 80          | 92           |
 | `quoteProps`               | "as-needed"  | "as-needed" | "consistent" |
@@ -282,45 +281,40 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
   Use `false` only for test the settings, leave the default for normal use.
 
-## Supported Options
+### Options
 
-All allowed, but not all makes sense.
+PrettierX ships with a handful of customizable format options, usable in both the CLI and API.
 
-### Prettier Options
+For the full list of options please see the [Options of PrettierX](https://github.com/brodybits/prettierx/blob/dev/docs/options.md).
 
-| Property                     | Type    | Default     | Notes                                                                                                            |
-| ---------------------------- | ------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
-| `printWidth`                 | integer | 80          | Specify the line length that the printer will wrap on.                                                           |
-| `tabWidth`                   | integer | 2           | Specify the number of spaces per indentation-level.                                                              |
-| `useTabs`                    | boolean | false       | Indent lines with tabs instead of spaces.                                                                        |
-| `semi`                       | boolean | true        | Print semicolons at the ends of statements.                                                                      |
-| `singleQuote`                | boolean | false       | Use single quotes instead of double quotes.                                                                      |
-| `jsxSingleQuote`             | boolean | false       | Use single quotes instead of double quotes in JSX.                                                               |
-| `quoteProps`                 | string  | "as-needed" | Change when properties in objects are quoted. Valid options: 'as-needed', 'consistent', 'preserve'.              |
-| `trailingComma`              | enum    | "none"      | (none, es5, all) Print trailing commas wherever possible when multi-line.                                        |
-| `bracketSpacing`             | boolean | true        | Print spaces between brackets in object literals.                                                                |
-| `jsxBracketSameLine`         | boolean | false       | Put the `>` of a multi-line JSX element at the end of the last line instead of being alone on the next line.     |
-| `arrowParens`                | enum    | "avoid"     | (avoid, always) Include parentheses around a sole arrow function parameter.                                      |
-| `parser`                     | string  | "babel"     | Specify which parser to use. Yo can also pass an already `require`d parser.                                      |
-| `requirePragma`              | boolean | false       | Restrict to only format files that contain a special comment (`@prettier` or `@format`).                         |
-| `insertPragma`               | boolean | false       | Insert a special `@format` marker at the top of files that have been formatted.                                  |
-| `endOfLine`                  | enum    | "auto"      | (auto, lf, crlf, cr) End-of-line type. "auto" normalises the EOLs by looking at what's used after the first line |
-| `embeddedLanguageFormatting` | boolean | "auto"      | Control whether Prettier formats quoted code embedded in the file.                                               |
+These are just the _additional_ PrettierX options and its default values:
 
-### Prettierx Extensions
-
-| Property                   | Type    | Default | Notes                                                                                                                      |
-| -------------------------- | ------- | ------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `alignObjectProperties`    | boolean | false   | Align colons in multiline object literals (not applied with any of the JSON parsers).                                      |
-| `spaceBeforeFunctionParen` | boolean | false   | Put a space before function parenthesis.                                                                                   |
-| `generatorStarSpacing`     | boolean | false   | Add spaces around the star (\*) in generator functions.                                                                    |
-| `yieldStarSpacing`         | boolean | false   | Add spaces around the star (\*) in `yield` expressions.                                                                    |
-| `parenSpacing`             | boolean | false   | Inserts extra spaces inside parentheses, the way how projects in the WordPress ecosystem (Calypso, Gutenberg, etc.).       |
-| `alignTernaryLines`        | boolean | true    | Align ternary lines in case of multiline ternery term (Should be disabled for consistency with ESLint/StandardJS behavior. |
-| `indentChains`             | boolean | true    | Print indents at the start of chained calls.                                                                               |
-| `breakBeforeElse`          | boolean | false   | Always add a line break before else.                                                                                       |
-| `htmlVoidTags`             | boolean | false   | Format void HTML elements as void tags.                                                                                    |
-| `breakLongMethodChains`    | boolean | false   | Break method chains with more than 3 method calls, like Prettier 1.x.                                                      |
+| Property                 | Default |
+| ------------------------ | ------- |
+| alignObjectProperties    | false   |
+| arrayBracketSpacing      | false   |
+| breakBeforeElse          | false   |
+| breakLongMethodChains    | false   |
+| computedPropertySpacing  | false   |
+| cssParenSpacing          | false   |
+| exportCurlySpacing       | true    |
+| generatorStarSpacing     | false   |
+| graphqlCurlySpacing      | true    |
+| htmlVoidTags             | false   |
+| importCurlySpacing       | true    |
+| importFormatting         | "auto"  |
+| indentChains             | true    |
+| objectCurlySpacing       | true    |
+| offsetTernaryExpressions | false   |
+| spaceBeforeFunctionParen | false   |
+| spaceInParens            | false   |
+| spaceUnaryOps            | false   |
+| templateCurlySpacing     | false   |
+| typeAngleBracketSpacing  | false   |
+| typeBracketSpacing       | false   |
+| typeCurlySpacing         | true    |
+| yamlBracketSpacing       | true    |
+| yieldStarSpacing         | false   |
 
 ## VS Code ESLint
 
