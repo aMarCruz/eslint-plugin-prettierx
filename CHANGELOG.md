@@ -1,5 +1,11 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.17.1] - 2021-02-08
+
+### Changed
+
+- Use default value (`false`) for the `breakLongMethodChains` option (sorry).
+
 ## \[0.17.0] - 2021-02-07
 
 ### Added

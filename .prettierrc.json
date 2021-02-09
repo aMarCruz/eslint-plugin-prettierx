@@ -8,6 +8,5 @@
   "semi": false,
   "singleQuote": true,
   "spaceBeforeFunctionParen": true,
-  "htmlVoidTags": true,
   "yieldStarSpacing": true
 }
