@@ -113,12 +113,11 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 These are the prettierx [options](#options) used for each preset:
 
-| &nbsp;                     | Prettier 2.x | standardx   | standardize  |
+| &nbsp;                     | default      | standardx   | standardize  |
 | -------------------------- | ------------ | ----------- | ------------ |
 | `alignObjectProperties`    | false        | false       | false        |
 | `offsetTernaryExpressions` | false        | true        | true         |
 | `arrowParens`              | "always"     | "avoid"     | "avoid"      |
-| `bracketSpacing`           | true         | true        | true         |
 | `breakBeforeElse`          | false        | false       | false        |
 | `breakLongMethodChains`    | false        | false       | false        |
 | `endOfLine`                | "lf"         | "lf"        | "lf"         |
