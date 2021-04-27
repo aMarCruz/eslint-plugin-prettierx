@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "env": {
+    "es2020": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "plugins": ["self"],
+  "rules": {
+    "self/options": ["warn", { "semi": true }]
+  }
+}

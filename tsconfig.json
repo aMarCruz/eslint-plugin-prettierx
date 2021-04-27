@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "checkJs": true,
@@ -10,7 +11,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "resolveJsonModule": true,
+    "outDir": "./~js",
     "strict": true,
-    "target": "es6"
-  }
+    "target": "ES2018"
+  },
+  "include": ["lib"]
 }

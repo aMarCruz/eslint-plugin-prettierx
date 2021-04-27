@@ -1,5 +1,24 @@
 # Changelog of eslint-plugin-prettierx
 
+## \[0.18.0]
+
+### Added
+
+- bin/prettierx-init tool for create a .prettierrc file
+
+### Changed
+
+- Better schemas, pre-builded from the Prettierx sources
+- Update properties and default values
+- Update standardx & standardize presets
+- Update dependencies, use Prettierx v0.18.0
+
+### Remove
+
+- standardize-bundle, as eslint-config-standardize now include Prettierx
+- Separate configs for supported plugins
+- bin/list-eslint-config.js utility (undocummented)
+
 ## \[0.17.1] - 2021-02-08
 
 ### Changed

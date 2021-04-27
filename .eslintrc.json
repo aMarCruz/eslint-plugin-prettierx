@@ -1,8 +1,13 @@
 {
   "root": true,
-  "extends": [
-    "standardize",
-    "standardize/typescript",
-    "standardize/node-only"
-  ]
+  "env": {
+    "es2020": true,
+    "node": true
+  },
+  "parserOptions": {
+    "sourceType": "script"
+  },
+  "ignorePatterns": ["*.ts"],
+  "plugins": ["self"],
+  "extends": ["eslint:recommended", "plugin:self/standardize"]
 }

@@ -1,12 +1,12 @@
 {
   "usePrettierrc": {
     "description": "Set to `true` to look for a configuration file, if `false` the plugin or default settings will be used.",
-    "default": false,
+    "default": true,
     "type": "boolean"
   },
   "editorconfig": {
-    "description": "If set to `true` and an `.editorconfig` file is in your project, Prettier will parse it and convert its properties to the corresponding prettier configuration. This configuration will be overridden by `.prettierrc`",
-    "default": true,
+    "description": "Take .editorconfig into account when parsing configuration. This configuration will be overridden by `.prettierrc`",
+    "default": false,
     "type": "boolean"
   },
   "ignorePath": {

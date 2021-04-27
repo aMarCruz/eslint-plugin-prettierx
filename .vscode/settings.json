@@ -3,22 +3,23 @@
   "eslint.format.enable": true,
   "eslint.validate": [
     "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
+    "javascriptreact"
   ],
   "javascript.format.enable": false,
   "typescript.format.enable": false,
   "typescript.disableAutomaticTypeAcquisition": true,
   "typescript.tsdk": "node_modules/typescript/lib",
   "javascript.validate.enable": false,
-  "editor.formatOnSave": true,
   "[markdown]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
     "editor.quickSuggestions": true,
     "editor.wordWrap": "on",
     "files.trimTrailingWhitespace": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
   },
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -28,7 +29,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true,
   },
-  "files.exclude": {
-    "**/node_modules": false
+  "files.associations": {
+    ".prettierignore": "ignore",
+    ".prettierrc.json": "json"
   }
 }

@@ -2,98 +2,44 @@
 
 [![License][license-badge]][license-url] [![npm Version][npm-badge]][npm-url]
 
-Format your code with ESLint using [Prettierx](https://github.com/brodybits/prettierx), with presets for [Prettier](https://prettier.io) and [StandardJS](https://standardjs.com/) or your custom options.
+[ESLint](http://eslint.org) plugin to format your code with [PrettierX](https://github.com/brodybits/prettierx).
 
-- Based on ESLint or external configuration.
-- Presets\* for default options.
+- Based on the ESLint configuration and/or external prettierrc config file.
+- Include PrettierX presets for [StandardJS](https://standardjs.com/) and [Standardize](https://www.npmjs.com/package/eslint-config-standardize).
+- Each PrettierX option can be overwritten without affecting the rest.
 
-For use with ESLint v7.15.0 as minimum, for ESLint v7.14 or lower use eslint-config-prettierx 0.14 or bellow.
+**Requirements:**
 
-Minimum NodeJS version supported: NodeJS 10.13.0 or 12.0.0 and above, as described in [brodybits/prettierx#6](https://github.com/brodybits/prettierx/issues/6)
+- ESLint 7 or later
+- NodeJS 10.13 or 12, or as required by ESLint
 
-## Note
+## <span style="color:red">IMPORTANT</span>
 
-Please see the [Changelog](CHANGELOG.md) for more info.
+Since v0.18.0, eslint-plugin-prettierx does **not include** separate groups of rules for the plugins it supports, which are now included in the presets.
 
-If you are using the [(fake) Prettier](#prettier) package, please update it.
+As far as `prettierx/standardize-bundle`\* is concerned, the new version of [eslint-config-standardize](https://www.npmjs.com/package/eslint-config-standardize) includes PrettierX, so the bundle is no longer necessary and has also been removed.
+
+> \* Do not confuse the "standardize" preset with the "standardize-bundle". The former is a generic version focused on PrettierX and designed to be used with other plugins, while "standardize-bundle" was intended to be used as a complement of eslint-config-standardize.
+
+Please see the [Changelog](CHANGELOG.md) for info about other changes.
 
 ## Setup
 
-Install [ESLint](http://eslint.org) v6.x and the Prettierx plugin with npm or yarn:
+Install [ESLint](http://eslint.org) and the PrettierX plugin.
 
 ```bash
-yarn add eslint@6.8.x eslint-plugin-prettierx -D
+yarn add -D eslint eslint-plugin-prettierx
 ```
 
 Install other plugins that you need.
 
-Now configure ESLint to make it work without conflicts between its internal rules, those of other plugins, and the prettierx settings.
+Add "prettierx" to the `plugins` array of your `.eslintrc` file (.js, .json, .yaml, etc). You can omit the "eslint-plugin-" prefix.
 
-1. Add `prettierx` to the "plugins" section of your configuration file (.eslintrc.js, .json, yaml, etc). You can omit the "eslint-plugin-" prefix.
-
-2. Then, in "extends", put the configs of other plugins that you are using. Almost all plugins include configs to enable several of its rules.
-
-3. Bellow these configs, put "plugin:prettierx/&lt;preset&gt;", where `<preset>` is the name of the preset (style) that you will use.
-
-4. Last, add the configs provided by prettierx for the plugins that you included in the step `2`. This configs will disable rules that conflict with those plugins.
-
-This is an example for projects using TypeScript with the @typescript-eslint parser, the @typescript-eslint plugin, the "react" plugin, and "prettierx" with the "standardx" preset:
-
-```bash
-yarn add eslint eslint-plugin-prettierx eslint-plugin-react @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
-```
-
-Configure eslint
-
-```js
-module.exports = {
-  // "root" is optional, avoids searching eslintrc upwards.
-  root: true,
-  parser: '@typescript-eslint/parser',
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  // the prettierx plugin already sets ecmaVersion 2018,
-  // sourceType "module" and enables ecmaFeatures.jsx
-  parserOptions: {
-    warnOnUnsupportedTypeScriptVersion: false,
-  },
-
-  plugins: [
-    '@typescript-eslint',
-    'react',
-    // 1. Add the prettierx plugin
-    'prettierx',
-  ],
-  extends: [
-    // OPTIONAL: the eslint recommended config
-    'eslint:recommended',
-    // OPTIONAL: configs to enable plugin rules
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended',
-    // 2. prettierx settings with the "standardx" style
-    'plugin:prettierx/standardx',
-    // 3. add exclusions for additional plugins
-    'plugin:prettierx/@typescript-eslint',
-    'plugin:prettierx/react',
-  ],
-}
-```
-
-That's all! but you can personalize it, if you want.
-
-See the provided [exclusions](#exlusions) later in this doc.
-
-You don't need exclusions for 'eslint:recommended' nor for plugins that affect the layout.
-
-### Important
-
-The provided presets only configure the style used by prettierx and disable conflicting ESLint rules. They do _**not enable**_ rules. You must use the plugin configs for that, along with the exclusions provided by prettierx for each plugin.
+Then, add to `extends` the configurations of other plugins that you are using, and bellow these, put "plugin:prettierx/&lt;preset&gt;", where `<preset>` is the name of the preset you want to use.
 
 ## Presets
 
-The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the initial PrettierX options and disable several ESLint rules that can cause conflicts. Three are provided:
+The _presets_ of eslint-plugin-prettierx are special ESLint configurations that set the initial PrettierX options and disable various conflicting rules, both from ESLint and from other well-known [plugins](#supported_plugins). Three are provided:
 
 - **default**
 
@@ -101,83 +47,17 @@ The _presets_ of eslint-plugin-prettierx are special ESLint configs that set the
 
 - **standardx**
 
-  This is the StandardJS style. You can use it with the [standard](https://github.com/standard/eslint-config-standard) config from StandardJS, but it is not recommended because you will need to setup all manually.
-
-  Note: In a future version, I will provide an customized preset for the StandardJS bundle, much like the [standardize-bundle](#bundle-presets).
+  This one mimics the StandardJS style. You can use it with the [eslint-config-standard](https://github.com/standard/eslint-config-standard), if you wish.
 
 - **standardize**
 
-  This is my personal preset, a modified version of StandardJS with trailing commas in multiline format, consistent quotes in object properties, and double quotes for JSX properties that I use with my [standardize](https://www.npmjs.com/package/eslint-config-standardize) config (but it can be used with your own config).
+  This is the preset that my team and I use, a modified version of StandardJS with trailing commas in multiline format, consistent quotes in object properties, and double quotes for JSX properties. Our full configuration, that already include this preset is in [eslint-config-standardize](https://github.com/aMarCruz/eslint-config-standardize) and [@quitsmx/eslint-config](https://github.com/quitsmx/eslint-config).
 
-### Differences in presets
+The provided presets only configure the style used by PrettierX, they do _**not enable**_ rules. You must use your own plugin configurations for that.
 
-These are the prettierx [options](#options) used for each preset:
+### Supported Plugins
 
-| &nbsp;                     | default      | standardx   | standardize  |
-| -------------------------- | ------------ | ----------- | ------------ |
-| `alignObjectProperties`    | false        | false       | false        |
-| `offsetTernaryExpressions` | false        | true        | true         |
-| `arrowParens`              | "always"     | "avoid"     | "avoid"      |
-| `breakBeforeElse`          | false        | false       | false        |
-| `breakLongMethodChains`    | false        | false       | false        |
-| `endOfLine`                | "lf"         | "lf"        | "lf"         |
-| `generatorStarSpacing`     | false        | true        | true         |
-| `indentChains`             | true         | true        | true         |
-| `insertPragma`             | false        | -           | false        |
-| `jsxBracketSameLine`       | false        | false       | false        |
-| `jsxSingleQuote`           | false        | true        | false        |
-| `parser`                   | "babel"      | "babel"     | "babel"      |
-| `printWidth`               | 80           | 80          | 92           |
-| `quoteProps`               | "as-needed"  | "as-needed" | "consistent" |
-| `requirePragma`            | false        | -           | false        |
-| `semi`                     | true         | false       | false        |
-| `singleQuote`              | false        | true        | true         |
-| `spaceBeforeFunctionParen` | false        | true        | true         |
-| `tabWidth`                 | 2            | 2           | 2            |
-| `trailingComma`            | "es5"        | "none"      | "es5"        |
-| `useTabs`                  | false        | false       | false        |
-| `yieldStarSpacing`         | false        | true        | true         |
-
-You can override individual options through a .prettierrc(.json) or .editorconfig file or through the "`prettierx/options`" rule of your ESLint config.
-
-### Bundle Presets
-
-For the "[standardized](https://www.npmjs.com/package/eslint-config-standardize)" bundle, prettierx provides the special config 'plugin:prettierx/standardize-bundle', so you do not need to worry about the details.
-
-#### Usage
-
-```bash
-yarn add eslint eslint-plugin-prettierx eslint-config-standardize -D
-```
-
-```json
-{
-  "plugins": ["prettierx"],
-  "extends": ["standardize", "plugin:prettierx/standardize-bundle"]
-}
-```
-
-##### Usage with TypeScript
-
-```bash
-yarn add eslint eslint-plugin-prettierx eslint-config-standardize @typescript-eslint/parser @typescript-eslint/eslint-plugin -D
-```
-
-```json
-{
-  "plugins": ["@typescript-eslint", "prettierx"],
-  "extends": [
-    "standardize",
-    "standardize/typescript",
-    "plugin:prettierx/standardize-bundle",
-    "plugin:prettierx/@typescript-eslint"
-  ]
-}
-```
-
-## Exclusions
-
-eslint-plugin-prettierx provide exclusion rules for a few plugins:
+eslint-plugin-prettierx include support for a few plugins:
 
 - plugin:prettierx/@typescript-eslint for [@typescript-eslint](https://www.npmjs.com/package/@typescript-eslint/eslint-plugin)
 - plugin:prettierx/babel for [eslint-plugin-babel](https://www.npmjs.com/package/eslint-plugin-babel)
@@ -187,14 +67,68 @@ eslint-plugin-prettierx provide exclusion rules for a few plugins:
 - plugin:prettierx/unicorn [eslint-plugin-unicorn](https://www.npmjs.com/package/eslint-plugin-unicorn)
 - plugin:prettierx/vue [eslint-plugin-vue](https://www.npmjs.com/package/eslint-plugin-vue)
 
-\* Plugins that do not affect the format ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), stc), does not need exclusions.
+\* Plugins that do not affect the format ([node](https://www.npmjs.com/package/eslint-plugin-node), [promise](https://www.npmjs.com/package/eslint-plugin-promise), [compat](https://www.npmjs.com/package/eslint-plugin-compat), etc), does not conflict with PrettierX.
+
+## Example
+
+This is an example for projects based on TypeScript and React, with the "standardize" preset:
+
+```bash
+yarn add -D typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-plugin-react
+```
+
+```json
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
+  "plugins": ["@typescript-eslint", "react", "prettierx"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettierx/standardize"
+  ]
+}
+```
+
+This .prettierrc.json file mirrors the "standardize" preset and can be used by the prettiex cli and other tools such as the [Prettier extension for VS Code](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode).
+
+If you are using any Prettier tool, it is recommended that you use the Prettier package from [aMarCruz/prettier](https://github.com/aMarCruz/prettier) to avoid conflicts.
+
+```json
+{
+  "arrowParens": "avoid",
+  "generatorStarSpacing": true,
+  "offsetTernaryExpressions": true,
+  "printWidth": 92,
+  "quoteProps": "consistent",
+  "semi": false,
+  "singleQuote": true,
+  "spaceBeforeFunctionParen": true,
+  "yieldStarSpacing": true
+}
+```
+
+You can generate this file with the "prettierx-init" utility, provided by this plugin, from the command line.
+
+```bash
+npx prettierx-init standardize
+```
+
+NOTE:
+
+The "default" preset generates an empty .prettierrc.json, which is fine and tells prettierx to use the default options, unless you overwrite one or more with ESLint. See [precedence](#precedence).
 
 ## Rules
 
-Because the way that Prettierx works, this plugin has one only rule: `prettierx/options`, that contains all the plugin options.
+Due to the way it works, this plugin has only one rule: `prettierx/options`, that contains all the prettierx options.
 
 ```js
-  "prettierx/options": [severity, options]
+  "prettierx/options": [severity, options],
 ```
 
 - **`severity`**
@@ -204,40 +138,95 @@ Because the way that Prettierx works, this plugin has one only rule: `prettierx/
 
 - **`options`**
 
-  Allows override the [options](#options) defined by the [preset](#presets).
+  Allows override the [options](#options) defined by the [preset](#presets) (you can also use a .prettierrc file for that).
 
-The values of a preset are used as defaults for missing options when you override the options.
+### Options
 
-The precedence of the plugin configuration:
+PrettierX ships with a handful of customizable format options, usable in both the CLI and API.
 
+These are the Prettier/PrettierX options and its default values, along with the values overridden by each preset:
+
+| Property                    | default       | standardx | standardize    |
+| --------------------------- | ------------- | --------- | -------------- |
+| `alignObjectProperties`     | `false`       |           |                |
+| `arrayBracketSpacing`       | `false`       |           |                |
+| `arrowParens`               | `"always"`    | `"avoid"` | `"avoid"`      |
+| `breakBeforeElse`           | `false`       |           |                |
+| `breakLongMethodChains`     | `false`       |           |                |
+| `computedPropertySpacing`   | `false`       |           |                |
+| `cssParenSpacing`           | `false`       |           |                |
+| `endOfLine`                 | `"lf"`        |           |                |
+| `exportCurlySpacing`        | `true`        |           |                |
+| `generatorStarSpacing`      | `false`       | `true`    | `true`         |
+| `graphqlCurlySpacing`       | `true`        |           |                |
+| `htmlVoidTags`              | `false`       |           |                |
+| `htmlWhitespaceSensitivity` | `"css"`       |           |                |
+| `importCurlySpacing`        | `true`        |           |                |
+| `importFormatting`          | `"auto"`      |           |                |
+| `indentChains`              | `true`        |           |                |
+| `insertPragma`              | `false`       |           |                |
+| `jsxBracketSameLine`        | `false`       |           |                |
+| `jsxSingleQuote`            | `false`       | `true`    |                |
+| `objectCurlySpacing`        | `true`        |           |                |
+| `offsetTernaryExpressions`  | `false`       | `true`    | `true`         |
+| `printWidth`                | `80`          |           | `92`           |
+| `proseWrap`                 | `"preserve"`  |           |                |
+| `quoteProps`                | `"as-needed"` |           | `"consistent"` |
+| `requirePragma`             | `false`       |           |                |
+| `semi`                      | `true`        | `false`   | `false`        |
+| `singleQuote`               | `false`       | `true`    | `true`         |
+| `spaceBeforeFunctionParen`  | `false`       | `true`    | `true`         |
+| `spaceInParens`             | `false`       |           |                |
+| `spaceUnaryOps`             | `false`       |           |                |
+| `tabWidth`                  | `2`           |           |                |
+| `templateCurlySpacing`      | `false`       |           |                |
+| `trailingComma`             | `"es5"`       | `"none"`  |                |
+| `typeAngleBracketSpacing`   | `false`       |           |                |
+| `typeBracketSpacing`        | `false`       |           |                |
+| `typeCurlySpacing`          | `true`        |           |                |
+| `useTabs`                   | `false`       |           |                |
+| `vueIndentScriptAndStyle`   | `false`       |           |                |
+| `yamlBracketSpacing`        | `true`        |           |                |
+| `yieldStarSpacing`          | `false`       | `true`    | `true`         |
+
+To learn more about these options please see the [Options of PrettierX](https://github.com/brodybits/prettierx/blob/dev/docs/options.md).
+
+### Precedence
+
+The precedence of the plugin configuration is, from low to high:
+
+- PrettierX defaults.
+- Preset options, if any.
+- .editorconfig, if both `editorconfig` and `usePrettierrc` is `true`.
+- .prettierrc, if `usePrettierrc` is `true`.
 - `prettierx/options` from your ESLint config.
-- .prettierrc, if configured in the [settings](#settings).
-- .editorconfig, if configured and `usePrettierrc` is used.
-- Preset options.
+- ESLint comments in source files.
 
-Also, if you want to change the behavior of the plugin for certain directories, use the "overrides" property of the ESLint config.
+Also, if you want to change the behavior of the plugin for certain directories, use the "overrides" property of the ESLint or Prettier config.
 
 ### Settings
 
-To fine-tune the prettierx operation, you can use the `settings` block of your eslintrc file.
+To fine-tune the prettierx operation, you can use the `settings` block of your .eslintrc file.
 
-This example shows the default values for the "default" preset:
+This .eslintrc.json shows the default values:
 
 ```json
 {
   "settings": {
     "prettierx": {
-      "usePrettierrc": false,
-      "editorconfig": true,
+      "usePrettierrc": true,
+      "editorconfig": false,
       "ignorePath": ".prettierignore",
-      "useCache": true,
-      "withNodeModules": false
+      "pluginSearchDirs": [],
+      "plugins": [],
+      "withNodeModules": false,
+      "useCache": true
     }
   }
 }
 ```
 
-These are the same for the "standardx" and "standardize" presets, except `usePrettierrc`, which is set to `false`.
+These are the same for all the presets.
 
 - **`usePrettierrc`**
 
@@ -247,18 +236,21 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
 - **`editorconfig`**
 
-  Type: `boolean`, default: `true`
+  Type: `boolean`, default: `false`
 
-  _Note:_ This setting is valid only for `usePrettierrc: true`.
+  _Note:_ This setting is valid only when `usePrettierrc` is `true`.
 
-  If set to `true` and an `.editorconfig` file is in your project, Prettierx will parse it and convert its properties to the corresponding prettierx configuration.
+  If set to `true` and there's an `.editorconfig` file in the project, PrettierX will parse it and convert its properties to the corresponding PrettierX settings.
 
-  This configuration will be overridden by `.prettierrc`, etc. Currently, the following EditorConfig properties are supported:
+  This configuration will be overridden by `.prettierrc`. Currently, the following EditorConfig properties are supported:
 
-  - `end_of_line`
-  - `indent_style`
-  - `indent_size/tab_width`
-  - `max_line_length`
+  | EditorConfig            | PrettierX     |
+  | ----------------------- | ------------- |
+  | `end_of_line`           | `endOfLine`   |
+  | `indent_style`          | `useTabs`     |
+  | `indent_size/tab_width` | `tabWidth`    |
+  | `max_line_length`       | `printWidth`  |
+  | `quote_type`            | `singleQuote` |
 
 - **`ignorePath`**
 
@@ -266,11 +258,25 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
   Path to a file containing patterns that describe files to ignore.
 
+- **`pluginSearchDirs`**
+
+  Type: `string`, default: `[]`
+
+  Custom directories that contains prettier plugins in the node_modules subdirectory.
+
+  Overrides default behavior when plugins are searched relatively to the location of Prettier.
+
+- **`plugins`**
+
+  Type: `string`, default: `[]`
+
+  Array of plugins names to use.
+
 - **`withNodeModules`**
 
   Type: `boolean`, default: `false`
 
-  Prettierx will ignore files located in `node_modules` directory. Use this flag to change the default behavior.
+  PrettierX will ignore files located in `node_modules` directory. Set this flag to `true` to change the default behavior.
 
 - **`useCache`**
 
@@ -280,67 +286,38 @@ These are the same for the "standardx" and "standardize" presets, except `usePre
 
   Use `false` only for test the settings, leave the default for normal use.
 
-### Options
-
-PrettierX ships with a handful of customizable format options, usable in both the CLI and API.
-
-For the full list of options please see the [Options of PrettierX](https://github.com/brodybits/prettierx/blob/dev/docs/options.md).
-
-These are just the _additional_ PrettierX options and its default values:
-
-| Property                 | Default |
-| ------------------------ | ------- |
-| alignObjectProperties    | false   |
-| arrayBracketSpacing      | false   |
-| breakBeforeElse          | false   |
-| breakLongMethodChains    | false   |
-| computedPropertySpacing  | false   |
-| cssParenSpacing          | false   |
-| exportCurlySpacing       | true    |
-| generatorStarSpacing     | false   |
-| graphqlCurlySpacing      | true    |
-| htmlVoidTags             | false   |
-| importCurlySpacing       | true    |
-| importFormatting         | "auto"  |
-| indentChains             | true    |
-| objectCurlySpacing       | true    |
-| offsetTernaryExpressions | false   |
-| spaceBeforeFunctionParen | false   |
-| spaceInParens            | false   |
-| spaceUnaryOps            | false   |
-| templateCurlySpacing     | false   |
-| typeAngleBracketSpacing  | false   |
-| typeBracketSpacing       | false   |
-| typeCurlySpacing         | true    |
-| yamlBracketSpacing       | true    |
-| yieldStarSpacing         | false   |
-
 ## VS Code ESLint
 
-Install the plugin as normal, then use it with the "ESLint: Fix all auto-fixable Problems" (it is not a formatter ...yet).
+If you want to use this plugin with the ESLint and Prettier extensions of VS Code:
 
-- Assign a hotkey
+1. Install ESLint, eslint-plugin-prettierx, and the aMarCruz/prettier.
 
-  Open `File > Preferences > Keyboard Shortcuts` and assign a key to "ESLint: Fix all auto-fixable Problems" (`eslint.executeAutofix`).
+   ```bash
+   yarn add -D eslint eslint-plugin-prettierx aMarCruz/prettier
+   ```
 
-- If you want auto-fix when saving, add `"eslint.autoFixOnSave": true` to the VS Code settings.
+2. Enable the plugin in the VS Code settings to format the desired file types.
 
-### Formating TypeScript
-
-ESLint does not fix TypeScript files by default. To enable this feature, you need add the "autoFix" flag to the TS types in your VS Code settings:
-
-```json
+```jsonc
 {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
   "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true // or "source.fixAll.eslint": true
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   }
 }
 ```
-
-### Formating Fenced Blocks
-
-To fix JS or TS blocks in markdown or HTML, try [eslint-plugin-markdown](https://www.npmjs.com/package/eslint-plugin-markdown) and [eslint-plugin-html](https://www.npmjs.com/package/eslint-plugin-html).
 
 ## As a git hook
 
@@ -363,33 +340,35 @@ and add this config to your package.json
   },
   "lint-staged": {
     "*.{js,mjs,jsx,ts,tsx}": ["eslint --fix"],
-    "*.{md,json,css}": ["prettierx --write"]
+    "*.{html,md,json,scss}": ["prettierx --write"]
   }
 }
 ```
 
 The last line is to format other files with prettierx, if you wish.
 
-## Migrating
+## Can I use this plugin without a Preset?
 
-Migrating from other tools (tslint, prettier, prettier-eslint, etc).
+Yes and No.
 
-## Understanding prettierx
+Any of the configurations offered by this plugin disables the rules that conflict with PrettierX. Using them with PrettierX disabled doesn't make sense.
 
-Prettierx is a fork of prettier which provides a few more options which resolve some conflicts with the Standard JS tool.
+Anyway, if you are using PrettierX separately (or a fake Prettier) I recommend that you add `"plugin:prettierx/default"` to the ESLint `extends` and keep the PrettierX settings in a separate ".prettierrc" file.
 
-## Precautions
+.eslintrc.json
 
-Avoid formating rules from other plugins.
+```json
+{
+  "plugins": ["prettierx"],
+  "extends": ["plugin:prettierx/default"]
+}
+```
 
-### Comment Directives
+Then, generate a .prettierrc.json file with the desired preset settings:
 
-Do not use trailing comments for directives, put them to its own line.
-
-## TODO
-
-- [x] ~~Config for the StandardJS bundle~~
-- [ ] Test
+```bash
+yarn prettier-init standardize
+```
 
 ## Support my Work
 

@@ -21,3 +21,27 @@ type RangeLoc = [number, number]
 type RuleModule = import('eslint').Rule.RuleModule
 type RuleContext = import('eslint').Rule.RuleContext
 type RuleMetaData = import('eslint').Rule.RuleMetaData
+
+type PluginSettings = {
+  editorconfig: boolean
+  ignorePath: string
+  plugins: string[]
+  pluginSearchDirs: string[]
+  useCache: boolean
+  usePrettierrc: boolean
+  withNodeModules: boolean
+}
+
+type Preset = {
+ parserOptions: Dict
+ settings: Dict
+ rules: Dict
+ extends: any[]
+ plugins: any[]
+}
+
+type Presets = {
+  'default': Preset
+  'standardx': Preset
+  'standardize': Preset
+}

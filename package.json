@@ -1,57 +1,63 @@
 {
   "name": "eslint-plugin-prettierx",
-  "version": "0.17.1",
-  "description": "Format your code with ESLint using Prettierx, with presets for Prettier and StandardJS",
+  "version": "0.18.0",
+  "description": "ESLint plugin to format your code with PrettierX",
   "keywords": [
     "eslint",
-    "eslintplugin",
+    "eslint-config",
     "eslint-plugin",
+    "editconfig",
     "prettier",
     "prettierx",
     "standard",
     "standardx",
+    "standardize",
     "formatter"
   ],
   "author": "aMarCruz <amarcruzbox-git@yahoo.com>",
-  "main": "lib/index.js",
+  "main": "./index.js",
   "engines": {
     "node": "^10.13.0 || >=12.0.0"
   },
   "bin": {
-    "list-eslint-config": "./bin/list-eslint-config.js"
+    "prettierx-init": "bin/prettierx-init.js"
   },
   "files": [
-    "lib",
+    "*.js",
     "bin",
-    "prettier"
+    "lib"
   ],
-  "bugs": "https://github.com/aMarCruz/eslint-plugin-prettierx/issues",
-  "homepage": "https://github.com/aMarCruz/eslint-plugin-prettierx",
   "repository": {
     "url": "https://github.com/aMarCruz/eslint-plugin-prettierx",
     "type": "git"
   },
+  "bugs": {
+    "url": "https://github.com/aMarCruz/eslint-plugin-prettierx/issues"
+  },
   "scripts": {
-    "test": "eslint -f unix --ext .js,.ts,.tsx bin lib && cd .. && echo Test passed."
+    "make": "node scripts/build.js",
+    "lint": "eslint -f unix lib test",
+    "test": "yarn make && yarn lint"
   },
   "dependencies": {
-    "eslint-config-prettier": "~7.2.0",
     "prettier-linter-helpers": "~1.0.0",
-    "prettierx": "~0.17.0"
+    "prettierx": "~0.18.0"
   },
   "devDependencies": {
-    "@types/eslint": "~7.2.6",
-    "@types/node": "~14.14.25",
-    "@types/prettier": "~2.2.0",
-    "@typescript-eslint/eslint-plugin": "~4.14.2",
-    "@typescript-eslint/parser": "~4.14.2",
-    "eslint": "~7.19.0",
-    "eslint-config-standardize": "~0.7.2",
-    "typescript": "~4.1.3"
+    "@jsbits/deep-clone": "~1.1.1",
+    "@types/eslint": "~7.2.10",
+    "@types/node": "~14.14.41",
+    "@types/prettier": "~2.2.3",
+    "@typescript-eslint/eslint-plugin": "~4.22.0",
+    "@typescript-eslint/parser": "~4.22.0",
+    "eslint": "~7.25.0",
+    "eslint-config-prettier": "~8.3.0",
+    "eslint-plugin-self": "~1.2.1",
+    "prettier": "aMarCruz/prettier#2.2.2",
+    "typescript": "~4.2.4"
   },
   "peerDependencies": {
-    "eslint": ">=7.15.0",
-    "typescript": ">=4.1.0"
+    "eslint": "^7.0.0"
   },
   "license": "MIT"
 }
