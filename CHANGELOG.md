@@ -1,6 +1,6 @@
 # Changelog of eslint-plugin-prettierx
 
-## \[0.18.0]
+## \[0.18.0] - 2021-04-27
 
 ### Added
 
